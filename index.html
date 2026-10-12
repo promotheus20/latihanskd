@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Latihan SKD CPNS 2027</title>
+<title>Latihan SKD CPNS</title>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#eef3f7;--card:#fff;--ink:#14213d;--mute:#5b6b82;--line:#c9d4e0;--gl:#dde6ee;--acc:#0f766e;--accbg:#d5f0ec;--q:#f5b301;--qink:#3a2a00;--ok:#15803d;--okbg:#dcf5e3;--bad:#b42318;--badbg:#fde4e1;--selbg:#e3e9f5;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -72,24 +72,42 @@ summary{cursor:pointer;font-size:.9rem;padding:6px 0}
 .rows{display:grid;grid-template-columns:1fr auto;gap:6px 12px;font-size:.9rem;margin:14px 0 0;text-align:left}
 .rows b{font-variant-numeric:tabular-nums}
 .note{font-size:.8rem;color:var(--mute);margin-top:12px}
+.hd{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding:10px 12px;border-radius:14px;background:var(--ink);color:var(--bg)}
+.hd>div:nth-child(2){flex:1;min-width:0}.hd b{display:block;font-size:.9rem}.hd small{display:block;font-size:.72rem;opacity:.85;line-height:1.3}
+.logo{width:38px;height:38px;border-radius:10px;background:var(--q);color:var(--qink);display:grid;place-items:center;font-weight:700;font-size:.78rem}
+.chip{padding:3px 10px;border-radius:999px;font-size:.75rem;font-weight:700;background:var(--accbg);color:var(--acc)}
+.chip.TWK{background:#fde68a;color:#3a2a00}.chip.TKP{background:#fbcfe8;color:#6b0f3a}
+.stat{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:8px 0}.stat div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 4px;text-align:center}.stat b{display:block;font-size:1.05rem}.stat span{font-size:.68rem;color:var(--mute)}
+.pal .flag{border-color:#f5b301;box-shadow:inset 0 0 0 2px #f5b301}
+.tg{flex:none;width:34px;height:34px;border:0;border-radius:999px;background:var(--q);color:var(--qink);font-size:1rem;line-height:1}
+#note,#cus{width:100%;margin-top:12px;padding:8px 10px;border-radius:10px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:.82rem}
+.ex .hd,.ex #note{display:none}
 </style>
 </head>
 <body>
 <main>
 
 <section id="menu">
-  <h1>Latihan SKD CPNS 2027</h1>
+  <header class="hd"><div class="logo">SKD</div><div><b>Latihan SKD CPNS</b><small>Siap lolos CPNS 2027 · © MRAQ</small></div><button class="tg" aria-label="Ganti tema"></button></header>
   <p class="sub">Format SKD CPNS 2025: TWK, TIU, dan TKP. Pilih satu tes saja atau tryout lengkap, semua dengan pembahasan.</p>
+  <div id="stats"></div>
   <h2>Jenis soal</h2>
   <div id="modes"></div>
   <h2>Cara latihan</h2>
   <div id="paces"></div>
   <div id="lens" class="seg" hidden></div>
+  <button class="pace" id="exm" hidden style="margin-top:8px"></button>
   <button class="go" id="start">Mulai latihan</button>
+  <details><summary>Soal buatan sendiri (impor)</summary>
+    <p class="note">Satu soal per baris: pertanyaan|jawaban benar|salah 1|salah 2|salah 3|salah 4|pembahasan (opsional). Bisa tempel teks atau pilih file .txt/.csv.</p>
+    <textarea id="cus" rows="5"></textarea><input type="file" id="cfile" accept=".txt,.csv" style="margin-top:8px">
+    <button class="sec" id="csave">Simpan soal</button><p class="note" id="cmsg"></p>
+  </details>
   <p class="note">SKD asli: 110 soal dalam 100 menit (TWK 30, TIU 35, TKP 45), sekitar 54,5 detik per soal. TWK dan TIU: benar 5 poin (maks 150 dan 175, batas 65 dan 80). TKP: tiap pilihan bernilai 1 sampai 5 (maks 225, batas 156 sampai 166). Soal TIU dibuat acak tiap latihan, mengikuti pola prediksi 2027.</p>
 </section>
 
 <section id="quiz" hidden>
+  <header class="hd"><div class="logo">SKD</div><div><b>Latihan SKD CPNS</b><small id="tip"></small></div><span class="chip" id="chip"></span><button class="tg" aria-label="Ganti tema"></button></header>
   <div class="top"><span id="mname"></span><span id="tmw"></span></div>
   <div class="bar"><i id="pb"></i></div>
   <div class="top"><b id="no"></b><span id="sc"></span></div>
@@ -98,10 +116,18 @@ summary{cursor:pointer;font-size:.9rem;padding:6px 0}
     <p class="ask" id="ask"></p>
     <div class="opts" id="opts"></div>
     <div id="why"></div>
+    <textarea id="note" rows="2" placeholder="Catatan pribadi untuk soal ini (tersimpan di perangkatmu)"></textarea>
   </div>
   <div class="nav"><button id="prev">Sebelumnya</button><button id="next" class="primary">Berikutnya</button></div>
-  <button class="sec" id="fin"></button>
+  <button class="sec" id="flag"></button><button class="sec" id="fin"></button>
   <details><summary>Daftar soal</summary><div class="pal" id="pal"></div></details>
+</section>
+
+<section id="cards" hidden>
+  <h2>Kartu hafalan TWK</h2>
+  <div class="card" id="cd" style="min-height:200px"></div>
+  <div class="nav"><button id="cprev">Sebelumnya</button><button id="cflip" class="primary"></button><button id="cnext">Berikutnya</button></div>
+  <button class="sec" id="cback">Kembali ke menu</button>
 </section>
 
 <section id="result" hidden>
@@ -113,11 +139,12 @@ summary{cursor:pointer;font-size:.9rem;padding:6px 0}
     <p class="note" id="rnote"></p>
   </div>
   <button class="go" id="rev">Tinjau jawaban dan pembahasan</button>
+  <button class="sec" id="share">Salin hasil untuk dibagikan</button>
   <button class="sec" id="again">Ulangi dengan soal baru</button>
   <button class="sec" id="tomenu">Kembali ke menu</button>
 </section>
 
-<p class="note" style="text-align:center;margin:24px 0 8px">© 2026 MRAQ.</p>
+<p class="note" style="text-align:center;margin:24px 0 8px">© 2026 MRAQ. Hak cipta dilindungi.</p>
 </main>
 <script>
 /* ---------- util ---------- */
@@ -348,33 +375,126 @@ Terjadi perundungan terhadap rekan di kantor. Anda...|Menolong korban, menegur p
 Warga meminta layanan di luar wewenang Anda. Anda...|Menjelaskan batas kewenangan dan mengarahkan ke instansi yang tepat|Menolak dengan sopan|Meneruskan ke rekan|Menjanjikan akan diusahakan|Menolak dengan ketus|Layanan informatif.
 Anda dipuji karena berprestasi dan rekan merasa iri. Anda...|Tetap rendah hati dan berbagi ilmu|Tetap rendah hati|Menjelaskan prestasi secara berlebihan|Menghindari rekan|Menyombongkan diri|Rendah hati dan kolaboratif.
 Perubahan struktur organisasi mengubah peran Anda. Anda...|Menerima, mempelajari peran baru, dan aktif berkoordinasi|Menerima saja|Menerima setelah mengeluh|Menunda adaptasi|Menolak|Adaptif terhadap perubahan.`.split("\n").map(x=>x.split("|"));
-function buildTWK(){R=rng(4004);return TWK.concat(TWK2).map(([q,a,...r])=>{const e=r.pop(),o=shuf([a,...r]);return{key:q,ctx:()=>`<p class="stmt">${q}</p>`,ask:'Pilih jawaban yang paling tepat.',o,ci:o.indexOf(a),e}})}
-function buildTKP(){R=rng(5005);return TKP.concat(TKP2).map(([q,...r])=>{const e=r.pop(),ix=shuf([0,1,2,3,4]),o=ix.map(i=>r[i]),sc=ix.map(i=>5-i);return{key:q,ctx:()=>`<p class="stmt">${q}</p>`,ask:'Pilih respons yang paling tepat. Tiap pilihan bernilai 1 sampai 5.',o,sc,ci:sc.indexOf(5),e:e+'<br>Poin: '+sc.map((p,i)=>L[i]+' = '+p).join(', ')}})}
-function pool(){const m=sel.mode,sh=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a},tg=(a,t)=>a.map(q=>({...q,t}));
-  if(m===6)return[...sh(tg(bank(4),'TWK')).slice(0,30),...tg(sh([...bank(1),...bank(2),...bank(3)]).slice(0,35),'TIU'),...sh(tg(bank(5),'TKP')).slice(0,45)];
-  if(m>3)return sh(tg(bank(m),m===4?'TWK':'TKP'));
-  return sh(tg(bank(m),'TIU')).slice(0,sel.pace==='waktu'?sel.len:100)}
+const TWK3=`Sidang pertama BPUPKI yang membahas dasar negara berlangsung|29 Mei sampai 1 Juni 1945|10 sampai 17 Juli 1945|7 sampai 9 Agustus 1945|16 Agustus 1945|1 sampai 7 Maret 1945|Sidang I membahas rumusan dasar negara.
+Ketua BPUPKI adalah|dr. K.R.T. Radjiman Wedyodiningrat|Ir. Soekarno|Moh. Hatta|Soepomo|Moh. Yamin|Radjiman memimpin BPUPKI.
+Ketua PPKI adalah|Ir. Soekarno|Moh. Hatta|Radjiman Wedyodiningrat|Soepomo|Achmad Soebardjo|Hatta menjadi wakil ketua.
+Pembukaan UUD 1945 terdiri atas|Empat alinea|Tiga alinea|Lima alinea|Enam alinea|Dua alinea|Pembukaan memiliki empat alinea.
+Alinea ketiga Pembukaan UUD 1945 memuat|Pernyataan kemerdekaan atas berkat rahmat Allah|Penjajahan harus dihapuskan|Tujuan negara|Dasar negara Pancasila|Perjuangan sampai ke gerbang kemerdekaan|Alinea ketiga: berkat rahmat Allah dan keinginan luhur.
+Salah satu tujuan negara dalam Pembukaan UUD 1945 adalah|Mencerdaskan kehidupan bangsa|Menjajah bangsa lain|Mendirikan negara agama|Menguasai ekonomi dunia|Menyatukan Asia Tenggara|Tercantum pada alinea keempat.
+Hak atas pendidikan diatur dalam|Pasal 31|Pasal 30|Pasal 32|Pasal 33|Pasal 34|Pasal 31 ayat (1).
+Fakir miskin dan anak terlantar dipelihara oleh negara menurut|Pasal 34|Pasal 31|Pasal 32|Pasal 33|Pasal 35|Pasal 34 ayat (1).
+Perekonomian disusun sebagai usaha bersama berdasarkan asas|Kekeluargaan|Persaingan bebas|Individualisme|Kapitalisme|Liberalisme|Pasal 33 ayat (1).
+Bahasa negara Indonesia diatur dalam|Pasal 36|Pasal 35|Pasal 36A|Pasal 36B|Pasal 37|Pasal 36: bahasa negara ialah bahasa Indonesia.
+Bendera negara diatur dalam|Pasal 35|Pasal 36|Pasal 36A|Pasal 36B|Pasal 37|Pasal 35: Sang Merah Putih.
+Lambang negara Garuda Pancasila diatur dalam|Pasal 36A|Pasal 35|Pasal 36|Pasal 36B|Pasal 37|Pasal 36A.
+Perubahan UUD diatur dalam|Pasal 37|Pasal 36|Pasal 35|Pasal 7|Pasal 3|Pasal 37 mengatur tata cara perubahan.
+Dewan Perwakilan Daerah (DPD) dibentuk melalui perubahan UUD yang ke|Tiga|Satu|Dua|Empat|Lima|Perubahan ketiga tahun 2001.
+Fungsi DPR meliputi|Legislasi, anggaran, dan pengawasan|Peradilan, eksekusi, dan pengawasan|Eksekutif dan yudikatif|Konsultatif dan konsiliasi|Pertahanan dan keamanan|Fungsi DPR menurut UUD dan UU MD3.
+Peraturan perundang-undangan setelah UUD 1945 dalam hierarki adalah|Ketetapan MPR|Peraturan Pemerintah|Peraturan Presiden|Peraturan Daerah|Peraturan Menteri|Urutan: UUD, TAP MPR, UU/Perppu, PP, Perpres, Perda.
+Kepala daerah dipilih secara demokratis menurut|Pasal 18 ayat (4)|Pasal 18 ayat (1)|Pasal 17|Pasal 19|Pasal 20|Pasal 18 ayat (4) UUD 1945.
+Peristiwa Bandung Lautan Api terjadi pada|24 Maret 1946|10 November 1945|1 Maret 1949|20 Mei 1948|15 Desember 1945|Rakyat membakar kota sebelum meninggalkannya.
+Serangan Umum 1 Maret 1949 di Yogyakarta dipimpin oleh|Letkol Soeharto|Jenderal Sudirman|A.H. Nasution|Gatot Subroto|Ahmad Yani|Letkol Soeharto memimpin serangan itu.
+Perjanjian Renville ditandatangani di atas kapal|USS Renville|KM Rajawali|SS Cheribon|Hr.Ms. Tromp|KRI Dewaruci|Perjanjian Renville tahun 1948.
+Konferensi Meja Bundar 1949 diselenggarakan di|Den Haag|Linggarjati|Jakarta|Renville|Yogyakarta|KMB berlangsung di Den Haag, Belanda.
+Hasil utama KMB adalah|Belanda mengakui kedaulatan Republik Indonesia Serikat|Belanda menyerahkan Irian Barat|Indonesia mengakui jajahan Belanda|Terbentuk negara kesatuan|Perjanjian Linggarjati disahkan|Pengakuan kedaulatan 27 Desember 1949.
+Irian Barat kembali ke NKRI melalui|Pepera 1969|Dekrit 1959|KMB 1949|Linggarjati 1946|Konferensi Malino|Penentuan Pendapat Rakyat 1969.
+Trikora dikumandangkan untuk|Membebaskan Irian Barat|Mengganyang Malaysia|Menumpas PKI|Membentuk RIS|Mengakhiri DI/TII|Trikora 19 Desember 1961.
+Surat Perintah Sebelas Maret (Supersemar) bertanggal|11 Maret 1966|30 September 1965|5 Juli 1959|21 Mei 1998|17 Agustus 1945|Supersemar 11 Maret 1966.
+Presiden Soeharto menyatakan berhenti pada|21 Mei 1998|13 Mei 1998|12 Mei 1998|1 Juni 1998|20 Mei 1998|Awal era Reformasi.
+Taman Siswa didirikan oleh|Ki Hajar Dewantara|dr. Soetomo|R.A. Kartini|Dewi Sartika|K.H. Ahmad Dahlan|Taman Siswa berdiri 1922.
+Muhammadiyah didirikan oleh|K.H. Ahmad Dahlan|K.H. Hasyim Asyari|H.O.S. Tjokroaminoto|Haji Samanhudi|Ki Hajar Dewantara|Berdiri 1912 di Yogyakarta.
+Nahdlatul Ulama didirikan oleh|K.H. Hasyim Asyari|K.H. Ahmad Dahlan|Wahid Hasyim|Abdurrahman Wahid|Haji Agus Salim|NU berdiri 1926.
+Sarekat Dagang Islam didirikan oleh|Haji Samanhudi|H.O.S. Tjokroaminoto|Douwes Dekker|Ki Hajar Dewantara|dr. Soetomo|Berdiri 1905 di Solo.
+Tiga Serangkai pendiri Indische Partij adalah|Douwes Dekker, Tjipto Mangunkusumo, dan Suwardi Suryaningrat|Soekarno, Hatta, dan Sjahrir|Soetomo, Wahidin, dan Goenawan|Tjokroaminoto, Agus Salim, dan Samanhudi|Hatta, Yamin, dan Soepomo|Indische Partij 1912.
+Naskah proklamasi dirumuskan di rumah|Laksamana Maeda|Ir. Soekarno|Moh. Hatta|Sayuti Melik|Wikana|Rumah Laksamana Tadashi Maeda.
+Peristiwa Rengasdengklok terjadi pada|16 Agustus 1945|17 Agustus 1945|15 Agustus 1945|18 Agustus 1945|14 Agustus 1945|Sehari sebelum proklamasi.
+Separatisme termasuk ancaman|Dari dalam negeri (internal)|Dari luar negeri (eksternal)|Bencana alam|Perang dingin|Hanya ancaman ekonomi|Ingin memisahkan diri dari NKRI.
+Sishankamrata melibatkan|Seluruh warga negara, wilayah, dan sumber daya nasional|Hanya TNI|Hanya Polri|Hanya pemerintah pusat|Hanya aparat keamanan|Sistem pertahanan semesta.
+Undang-undang yang mengatur pertahanan negara adalah|UU No. 3 Tahun 2002|UU No. 2 Tahun 2002|UU No. 34 Tahun 2004|UU No. 20 Tahun 2023|UU No. 23 Tahun 2014|UU 3/2002 tentang Pertahanan Negara.
+Wawasan Nusantara adalah|Cara pandang bangsa terhadap diri dan lingkungannya berdasarkan Pancasila dan UUD 1945|Penguasaan laut yang luas|Pandangan politik luar negeri|Strategi perang|Konsep negara federal|Landasan idiil Pancasila.
+Ketahanan nasional adalah|Kondisi dinamis bangsa yang ulet dan tangguh menghadapi ancaman|Kekuatan militer saja|Besarnya cadangan devisa|Kemampuan diplomasi|Kekayaan alam|Meliputi seluruh aspek kehidupan.
+Tri Gatra (aspek alamiah) terdiri atas|Geografi, demografi, dan sumber kekayaan alam|Ideologi, politik, dan ekonomi|Sosial budaya dan pertahanan|Politik dan hukum|Ekonomi dan keuangan|Asta Gatra = Tri Gatra + Panca Gatra.
+Politik luar negeri Indonesia menganut prinsip|Bebas aktif|Netral pasif|Blok barat|Blok timur|Isolasionis|Bebas aktif sejak Moh. Hatta.
+Pendiri ASEAN 1967 bersama Indonesia adalah|Malaysia, Filipina, Singapura, dan Thailand|Vietnam dan Laos|Kamboja dan Myanmar|Brunei dan Vietnam|Timor Leste dan Laos|ASEAN berdiri di Bangkok, 8 Agustus 1967.
+Sekretariat ASEAN berkedudukan di|Jakarta|Singapura|Bangkok|Kuala Lumpur|Manila|Sekretariat ASEAN ada di Jakarta.
+Hari Bela Negara diperingati setiap tanggal|19 Desember|17 Agustus|1 Oktober|10 November|20 Mei|Mengenang Agresi Militer II 1948.
+Hari Pendidikan Nasional diperingati setiap tanggal|2 Mei|21 April|20 Mei|28 Oktober|25 November|Hari kelahiran Ki Hajar Dewantara.
+Sikap menghargai perbedaan agama dan budaya disebut|Toleransi|Eksklusivisme|Primordialisme|Etnosentrisme|Fanatisme buta|Toleransi menjaga persatuan.
+Radikalisme adalah paham yang|Menghendaki perubahan drastis dengan cara kekerasan|Mengusulkan perubahan lewat jalur konstitusi|Memperbarui tanpa kekerasan|Mengkritik pemerintah secara sopan|Menjamin kebebasan berpendapat|Radikalisme bertentangan dengan Pancasila.
+Inti Pancasila yang diperas Soekarno menjadi Ekasila adalah|Gotong royong|Ketuhanan|Persatuan|Keadilan|Musyawarah|Trisila lalu Ekasila gotong royong.
+Lembaga antikorupsi yang dibentuk berdasarkan UU No. 30 Tahun 2002 adalah|Komisi Pemberantasan Korupsi|Badan Pemeriksa Keuangan|PPATK|Ombudsman RI|Kejaksaan Agung|KPK dibentuk tahun 2002.
+Ombudsman RI mengawasi|Penyelenggaraan pelayanan publik|Penyelenggaraan pemilu|Keuangan negara|Peradilan|Pertahanan|Pengawas pelayanan publik.
+Undang-undang terbaru tentang Aparatur Sipil Negara adalah|UU No. 20 Tahun 2023|UU No. 5 Tahun 2014|UU No. 43 Tahun 1999|UU No. 8 Tahun 1974|UU No. 23 Tahun 2014|UU 20/2023 menggantikan UU 5/2014.
+Nilai dasar ASN dikenal dengan akronim|BerAKHLAK|Panca Prasetya|Tri Dharma|Sapta Marga|Catur Karsa|Berorientasi pelayanan, akuntabel, kompeten, harmonis, loyal, adaptif, kolaboratif.
+Huruf H pada BerAKHLAK berarti|Harmonis|Hormat|Hebat|Handal|Hemat|H = Harmonis.
+Fungsi ASN adalah|Pelaksana kebijakan, pelayan publik, serta perekat dan pemersatu bangsa|Politikus|Pengusaha|Penegak hukum saja|Wakil rakyat|Menurut UU ASN.
+Netralitas ASN berarti|Tidak berpihak pada kepentingan politik tertentu|Boleh menjadi pengurus partai|Boleh ikut kampanye|Mendukung calon tertentu|Aktif di partai politik|ASN harus bebas dari intervensi politik.`.split("\n").map(x=>x.split("|"));
+const TKP3=`Rekan meminta Anda memalsukan tanda tangan absennya. Anda...|Menolak dan mengingatkan risiko pelanggaran disiplin|Menolak saja|Menolak lalu membicarakannya ke rekan lain|Ragu-ragu lalu menolak|Menurut sekali saja|Disiplin dan integritas.
+Atasan memuji hasil kerja yang sebenarnya dikerjakan rekan. Anda...|Menjelaskan kontribusi rekan itu ke atasan|Mengakui dalam hati saja|Diam|Menerima pujian|Mengaku itu hasil Anda|Jujur dan adil.
+Rekan memakai laptop kantor untuk bisnis pribadi. Anda...|Menegur sopan dan mengingatkan aturan penggunaan aset|Melapor langsung tanpa menegur|Diam|Meminjam juga|Ikut memakainya|Aset negara untuk dinas.
+Pembagian tugas di unit terasa tidak adil. Anda...|Membicarakan baik-baik dengan atasan memakai data beban kerja|Menerima saja|Mengeluh ke rekan|Mengerjakan asal-asalan|Menolak tugas|Komunikasi berbasis data.
+Warga bertanya layanan instansi lain. Anda...|Menjelaskan sebisanya dan mengarahkan lokasi serta syaratnya|Mengarahkan ke instansi tersebut|Mengatakan tidak tahu|Menyuruh bertanya ke orang lain|Mengabaikan|Pelayanan informatif.
+Anggota tim menolak arahan Anda sebagai ketua. Anda...|Mendengar alasannya lalu menyelaraskan tujuan tim|Menegur di depan tim|Melapor ke atasan|Mengambil alih tugasnya|Membiarkannya|Kepemimpinan persuasif.
+Rekan senior takut memakai aplikasi baru. Anda...|Mendampingi dan menunjukkan manfaatnya|Memberi video panduan|Menyerahkan ke atasan|Membiarkan|Memaksanya|Empati dalam adopsi teknologi.
+Anda menemukan celah sistem yang menguntungkan Anda. Anda...|Melapor ke atasan atau teknisi|Memberi tahu rekan|Diam|Memanfaatkan sedikit|Memanfaatkannya|Integritas.
+Saat libur muncul permintaan mendesak dari kantor. Anda...|Menilai urgensi, berkoordinasi dengan atasan, dan membantu bila perlu|Menolak|Membalas setelah libur|Mematikan ponsel|Mengabaikan|Profesional dan proporsional.
+Anda salah bicara dan menyinggung rekan. Anda...|Meminta maaf langsung dan tulus|Meminta maaf lewat pesan|Menunggu situasi reda|Menyangkal|Menyalahkan rekan|Bertanggung jawab.
+Anda mendengar rumor negatif tentang atasan. Anda...|Tidak menyebarkan dan memeriksa kebenarannya lewat jalur resmi|Tidak menyebarkan saja|Menanyakan ke rekan|Ikut membicarakan|Menyebarkannya|Hindari gosip.
+Anda diberi target melebihi kapasitas. Anda...|Menyusun rencana, meminta dukungan, dan mengomunikasikan risiko|Mengerjakan sebisanya|Menolak|Memanipulasi laporan|Menyerah|Realistis dan transparan.
+Rekan mengajak makan siang yang dibayari vendor. Anda...|Menolak dan menjelaskan aturan gratifikasi|Ikut tetapi membayar sendiri|Ikut sekali saja|Ikut dan diam|Ikut dibayari|Hindari konflik kepentingan.
+Anda melayani warga yang tidak bisa berbahasa Indonesia dengan baik. Anda...|Memakai bahasa sederhana dan meminta bantuan penerjemah|Berbicara lebih pelan|Memakai isyarat saja|Meminta warga mencari penerjemah|Menyerah|Layanan inklusif.
+Anda melihat peserta magang diperlakukan kasar. Anda...|Menegur pelaku dan melapor ke atasan|Menghibur korban|Diam|Menyuruh korban melapor sendiri|Ikut menertawakan|Berani membela.
+Pengumuman penting memuat jam yang salah. Anda...|Segera memperbaiki dan menginformasikan ke semua pihak terkait|Memperbaiki dan meminta maaf|Memberi tahu rekan saja|Menunggu ada yang protes|Membiarkannya|Cepat dan akuntabel.
+Beredar hoaks tentang layanan kantor. Anda...|Menjelaskan fakta lewat kanal resmi|Melapor ke humas|Mengabaikan|Membalas dengan emosi|Ikut menyebarkan|Klarifikasi resmi.
+Pekerjaan selesai lebih cepat dari jadwal. Anda...|Membantu rekan atau mengerjakan tugas pengembangan diri|Memeriksa ulang hasil|Beristirahat|Bermain ponsel|Pulang tanpa izin|Proaktif.
+Saudara Anda melamar jabatan di unit Anda. Anda...|Menyatakan konflik kepentingan dan tidak terlibat penilaian|Menyatakannya saja|Membantu secara netral|Membantu diam-diam|Mempengaruhi hasil|Hindari konflik kepentingan.
+Rapat berlarut dan tidak fokus. Anda...|Mengingatkan agenda dengan sopan dan mengusulkan ringkasan|Diam menunggu|Mencatat saja|Bermain ponsel|Meninggalkan rapat|Konstruktif.
+SOP yang berlaku tampak keliru. Anda...|Mengajukan usulan perbaikan lewat jalur resmi|Menjalankan sambil mencatat masalahnya|Menjalankan tanpa komentar|Mengabaikan SOP|Mengubahnya sendiri|Perbaikan lewat prosedur.
+Atasan baru bergaya kerja berbeda. Anda...|Menyesuaikan diri dan membangun komunikasi|Mengamati dulu|Mengeluh|Bersikap dingin|Meminta pindah|Adaptif.
+Kenalan mengundang Anda ke kampanye partai. Anda...|Menolak dan menjaga netralitas ASN|Menolak datang saja|Datang tanpa seragam|Datang berseragam|Mengajak rekan|Netralitas ASN.
+Anda diminta berbagi pengalaman di forum kantor. Anda...|Bersedia dan menyiapkan materi yang bermanfaat|Bersedia tanpa persiapan|Menolak karena grogi|Menyuruh rekan menggantikan|Menolak sambil mengejek|Berbagi ilmu.`.split("\n").map(x=>x.split("|"));
+function buildTWK(){R=rng(4004);return TWK.concat(TWK2,TWK3).map(([q,a,...r])=>{const e=r.pop(),o=shuf([a,...r]);return{key:q,ctx:()=>`<p class="stmt">${q}</p>`,ask:'Pilih jawaban yang paling tepat.',o,ci:o.indexOf(a),e}})}
+function buildTKP(){R=rng(5005);return TKP.concat(TKP2,TKP3).map(([q,...r])=>{const e=r.pop(),ix=shuf([0,1,2,3,4]),o=ix.map(i=>r[i]),sc=ix.map(i=>5-i);return{key:q,ctx:()=>`<p class="stmt">${q}</p>`,ask:'Pilih respons yang paling tepat. Tiap pilihan bernilai 1 sampai 5.',o,sc,ci:sc.indexOf(5),e:e+'<br>Poin: '+sc.map((p,i)=>L[i]+' = '+p).join(', ')}})}
+function pool(){const m=sel.mode,sh=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a},tg=(a,t)=>a.map(q=>({...q,t})),pk=(a,n)=>{const sn=ST.get().sn||{},u=sh(a.filter(q=>!sn[q.m+'|'+q.key])),v=sh(a.filter(q=>sn[q.m+'|'+q.key]));return[...u,...v].slice(0,n)};
+  if(m===6)return[...pk(tg(bank(4),'TWK'),30),...pk(tg([...bank(1),...bank(2),...bank(3)],'TIU'),35),...pk(tg(bank(5),'TKP'),45)];
+  if(m===7){const w=ST.get().w||{};return sh([1,2,3,4,5,9].flatMap(id=>bank(id).map(q=>({...q,t:id<4?'TIU':id===4?'TWK':id===5?'TKP':'KU'}))).filter(q=>w[q.m+'|'+q.key]))}
+  if(m===9)return sh(tg(bank(9),'KU'));
+  if(m>3)return pk(tg(bank(m),m===4?'TWK':'TKP'),m===4?30:45);
+  return pk(tg(bank(m),'TIU'),sel.pace==='waktu'?sel.len:100)}
 /* ---------- bank ---------- */
 const MODES=[
 {id:6,name:'Tryout SKD lengkap',d:'TWK, TIU, lalu TKP berurutan, dengan skor tiap tes dan batas kelulusan.'},
-{id:4,name:'TWK · Wawasan Kebangsaan',d:'Pancasila, UUD 1945, NKRI, Bhinneka Tunggal Ika, sejarah, bela negara. 45 soal.'},
-{id:5,name:'TKP · Karakteristik Pribadi',d:'Pelayanan publik, integritas, TIK, jejaring kerja, sosial budaya. 45 soal, nilai 1 sampai 5.'},
+{id:4,name:'TWK · Wawasan Kebangsaan',d:'Pancasila, UUD 1945, NKRI, Bhinneka Tunggal Ika, sejarah, bela negara, ASN. Bank 99 soal, 30 dipilih per sesi.'},
+{id:5,name:'TKP · Karakteristik Pribadi',d:'Pelayanan publik, integritas, TIK, jejaring kerja, sosial budaya. Bank 69 soal, 45 dipilih per sesi, nilai 1 sampai 5.'},
+{id:7,name:'Ulangi soal salah dan ragu-ragu',d:'Kumpulan soal yang pernah kamu jawab salah atau tandai ragu-ragu.'},
+{id:8,name:'Kartu hafalan TWK',d:'Kartu balik untuk pasal, tanggal, dan sila yang perlu dihafal.'},
+{id:9,name:'Soal buatanmu',d:'Latihan dari soal yang kamu impor sendiri (bagian bawah menu).'},
 {id:1,name:'TIU · Deret angka tabel 3×3',d:'Lengkapi angka yang hilang dari pola baris, kolom, atau urutan.',gen:q1},
 {id:2,name:'TIU · Hitung cepat nilai yang sama',d:'Bandingkan hasil perkalian dan temukan pasangan yang nilainya sama.',gen:q2},
 {id:3,name:'TIU · Kecukupan data',d:'Tentukan apakah pernyataan (1) dan (2) cukup untuk menjawab pertanyaan.',gen:q3}];
 const BANK={};
 function bank(id){
-  if(BANK[id])return BANK[id];if(id===4)return BANK[4]=buildTWK();if(id===5)return BANK[5]=buildTKP();
+  if(BANK[id])return BANK[id];if(id===4||id===5||id===9)return BANK[id]=(id===4?buildTWK():id===5?buildTKP():buildCustom()).map(q=>({...q,m:id}));
   R=rng(id*1000+7);const m=MODES.find(x=>x.id===id),out=[],seen=new Set();let g=0;
-  while(out.length<100&&g++<5000){const q=m.gen(out.length);if(seen.has(q.key))continue;seen.add(q.key);out.push(q)}
-  return BANK[id]=out;
+  while(out.length<300&&g++<30000){const q=m.gen(out.length);if(seen.has(q.key))continue;seen.add(q.key);out.push(q)}
+  return BANK[id]=out.map(q=>({...q,m:id}));
 }
 
+/* ---------- statistik & tips ---------- */
+const TIPS=['Kerjakan soal yang cepat dulu, tandai yang sulit sebagai ragu-ragu.','TIU: soal hitung cepat sering bisa dicoret lewat angka satuan.','TWK: hafalkan pasal kunci UUD 1945 dan tanggal penting.','TKP: pilih respons yang solutif, sopan, dan sesuai aturan.','Waktu ideal rata-rata sekitar 54 detik per soal.','Jangan kosongkan jawaban TWK dan TIU, salah tidak mengurangi nilai.'];
+const ST={get(){try{return JSON.parse(localStorage.getItem('skd')||'{}')}catch(e){return{}}},set(v){try{localStorage.setItem('skd',JSON.stringify(v))}catch(e){}}};
+function streak(h){const ds=new Set(h.map(x=>x.d));let n=0,t=new Date();if(!ds.has(t.toLocaleDateString('sv')))t.setDate(t.getDate()-1);while(ds.has(t.toLocaleDateString('sv'))){n++;t.setDate(t.getDate()-1)}return n}
+function renderStats(){const h=ST.get().h||[];$('stats').innerHTML=h.length?`<div class="stat"><div><b>${h.length}</b><span>sesi</span></div><div><b>${Math.max(...h.map(x=>x.p))}%</b><span>terbaik</span></div><div><b>${Math.round(h.reduce((a,x)=>a+x.p,0)/h.length)}%</b><span>rata-rata</span></div><div><b>${streak(h)}</b><span>hari beruntun</span></div></div>`:''}
+/* ---------- tema ---------- */
+const dk=()=>{const t=document.documentElement.dataset.theme;return t?t==='dark':matchMedia('(prefers-color-scheme:dark)').matches};
+function applyTheme(t){document.documentElement.dataset.theme=t;document.querySelectorAll('.tg').forEach(b=>{b.textContent=t==='dark'?'☀️':'🌙';b.title=t==='dark'?'Mode terang':'Mode gelap'})}
+document.querySelectorAll('.tg').forEach(b=>b.onclick=()=>{const t=dk()?'light':'dark';applyTheme(t);try{localStorage.setItem('skdTheme',t)}catch(e){}});
+{let t=null;try{t=localStorage.getItem('skdTheme')}catch(e){}applyTheme(t||(dk()?'dark':'light'))}
 /* ---------- menu ---------- */
 const sel={mode:1,pace:'santai',len:35};
 const PACES=[['santai','Santai','Tanpa batas waktu. Pilih jawaban (boleh diganti), lalu tekan Cek jawaban untuk melihat benar atau salah beserta pembahasan.'],['waktu','Berwaktu','Hitung mundur seperti ujian. Jawaban bisa diubah, pembahasan muncul setelah selesai.']];
 const LENS=[[35,'35 soal · 32 menit'],[100,'100 soal · 91 menit']];
-function renderMenu(){
+function renderMenu(){renderStats();$('exm').hidden=sel.pace!=='waktu';$('exm').className='pace'+(sel.exam?' on':'');$('exm').innerHTML='<strong>Simulasi ujian ketat</strong><span>'+(sel.exam?'Aktif':'Mati')+': header disembunyikan, konfirmasi sebelum selesai, mencoba layar penuh.</span>';if(!$('cus').dataset.l){$('cus').value=ST.get().c||'';$('cus').dataset.l=1}
   $('modes').innerHTML=MODES.map(m=>`<button class="mode ${sel.mode===m.id?'on':''}" data-m="${m.id}"><strong>${m.name}</strong><span>${m.d}</span></button>`).join('');
   $('paces').innerHTML=PACES.map(p=>`<button class="pace ${sel.pace===p[0]?'on':''}" data-p="${p[0]}"><strong>${p[1]}</strong><span>${p[2]}</span></button>`).join('');
   $('lens').hidden=sel.pace!=='waktu'||sel.mode>3;
@@ -386,13 +506,15 @@ $('lens').onclick=e=>{const b=e.target.closest('button');if(b){sel.len=+b.datase
 
 /* ---------- quiz ---------- */
 let S=null,tid=null;
-const show=id=>['menu','quiz','result'].forEach(x=>$(x).hidden=x!==id);
+const show=id=>['menu','quiz','result','cards'].forEach(x=>$(x).hidden=x!==id);
 const mmss=s=>String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
 function start(){
   clearInterval(tid);
-  const Q=pool(),N=Q.length;
-    S={mode:sel.mode,pace:sel.pace,Q:Q.slice(0,N),A:Array(N).fill(null),C:Array(N).fill(false),cur:0,review:false,total:Math.round(N*54.5),t0:Date.now(),used:0};
+  if(sel.mode===8){openCards();return}
+  const Q=pool(),N=Q.length;if(!N){alert('Belum ada soal untuk mode ini.');return}
+    S={mode:sel.mode,pace:sel.pace,Q:Q.slice(0,N),A:Array(N).fill(null),F:Array(N).fill(false),T:Array(N).fill(0),ts:Date.now(),last:0,C:Array(N).fill(false),cur:0,review:false,total:Math.round(N*54.5),t0:Date.now(),used:0};
   if(S.pace==='waktu'){S.end=Date.now()+S.total*1000;tid=setInterval(tick,500)}
+  $('tip').textContent=TIPS[Math.floor(Math.random()*TIPS.length)];S.exam=!!(sel.exam&&sel.pace==='waktu');document.body.classList.toggle('ex',S.exam);if(S.exam){const r=document.documentElement.requestFullscreen;if(r)try{r.call(document.documentElement).catch(()=>{})}catch(e){}}
   show('quiz');render();scrollTo({top:0});
 }
 function tick(){
@@ -402,11 +524,11 @@ function tick(){
 }
 const okAt=i=>S.A[i]===S.Q[i].ci,pts=i=>{const q=S.Q[i],a=S.A[i];return a===null?0:q.sc?q.sc[a]:(a===q.ci?5:0)};
 const shown=i=>S.review||(S.pace==='santai'&&S.C[i]);
-function render(){
+function render(){if(!S.review){S.T[S.last]+=(Date.now()-S.ts)/1000;S.last=S.cur}S.ts=Date.now();
   const q=S.Q[S.cur],a=S.A[S.cur],N=S.Q.length,fb=shown(S.cur),rev=fb;
   $('mname').textContent=MODES.find(m=>m.id===S.mode).name+(S.review?' · tinjauan':'');
   $('tmw').innerHTML=S.pace==='waktu'&&!S.review?`<span class="tm" id="tm">${mmss(Math.max(0,Math.ceil((S.end-Date.now())/1000)))}</span>`:'';
-  $('no').textContent=`Soal ${S.cur+1} dari ${N}`;
+  $('no').textContent=`Soal ${S.cur+1} dari ${N}`;$('note').value=(ST.get().n||{})[q.m+'|'+q.key]||'';$('chip').textContent=q.t||'TIU';$('chip').className='chip '+(q.t||'TIU');$('flag').textContent=S.F[S.cur]?'🚩 Ragu-ragu (tekan untuk batal)':'🏳️ Tandai ragu-ragu';
   const ans=S.A.filter(x=>x!==null).length,live=S.pace==='santai'&&!S.review,chkN=S.C.filter(Boolean).length,ok=S.A.filter((x,i)=>x!==null&&okAt(i)&&(!live||S.C[i])).length;
   $('sc').textContent=live?`Benar ${ok} dari ${chkN} dicek`:S.review?`Benar ${ok} dari ${ans} dijawab`:`Terjawab ${ans} dari ${N}`;
   $('pb').style.width=(ans/N*100)+'%';
@@ -423,7 +545,7 @@ function render(){
   $('next').disabled=!needCheck&&S.cur===N-1;
   $('fin').textContent=S.review?'Kembali ke hasil':'Selesai dan lihat skor';
   $('pal').innerHTML=S.Q.map((x,i)=>{
-    const v=S.A[i];let c=v===null?'':shown(i)?(okAt(i)?'ok':'bad'):'sel';if(i===S.cur)c+=' cur';
+    const v=S.A[i];let c=v===null?'':shown(i)?(okAt(i)?'ok':'bad'):'sel';if(S.F[i])c+=' flag';if(i===S.cur)c+=' cur';
     return`<button data-n="${i}" class="${c}">${i+1}</button>`;
   }).join('');
 }
@@ -437,11 +559,17 @@ $('next').onclick=()=>{
   if(S.cur<S.Q.length-1){S.cur++;render()}
 };
 $('pal').onclick=e=>{const b=e.target.closest('button');if(b){S.cur=+b.dataset.n;render();scrollTo({top:0})}};
-$('fin').onclick=()=>S.review?showResult():finish();
+$('fin').onclick=()=>S.review?showResult():(S.exam&&!confirm('Yakin selesai sekarang?'))?0:finish();
+$('flag').onclick=()=>{S.F[S.cur]=!S.F[S.cur];render()};
 
 /* ---------- hasil ---------- */
 function finish(){
   clearInterval(tid);
+  {S.T[S.last]+=(Date.now()-S.ts)/1000;S.slow=S.T.filter(x=>x>54.5).length;
+  const o=S.A.filter((x,i)=>x!==null&&okAt(i)).length,d=ST.get(),dt=new Date().toLocaleDateString('sv');
+  d.h=(d.h||[]).concat({p:Math.round(o/S.Q.length*100),d:dt,m:S.mode}).slice(-60);d.w=d.w||{};d.sn=d.sn||{};d.tp=d.tp||{};d.dn=d.dn||{};
+  S.Q.forEach((q,i)=>{const k=q.m+'|'+q.key,a=S.A[i]!==null;d.sn[k]=1;if(S.F[i]||(a&&!okAt(i)))d.w[k]=1;else if(a)delete d.w[k];const t=d.tp[q.m]||[0,0];t[0]+=pts(i)/5;t[1]++;d.tp[q.m]=t});
+  d.dn[dt]=(d.dn[dt]||0)+S.A.filter(x=>x!==null).length;ST.set(d)}
   if(S.pace==='waktu')S.used=Math.min(S.total,Math.round((Date.now()-S.t0)/1000));
   showResult();
 }
@@ -457,12 +585,39 @@ function showResult(){
   $('rp').textContent=`${Math.round(ok/N*100)}% benar atau terbaik`;
   $('rrows').innerHTML=`<span>Benar atau terbaik</span><b>${ok}</b><span>Kosong</span><b>${kos}</b>`+(S.pace==='waktu'?`<span>Waktu terpakai</span><b>${mmss(S.used)} dari ${mmss(S.total)}</b>`:'')+rows;
   $('rnote').textContent=pass?'Semua skor setara sudah di atas batas minimal. Pertahankan.':'Ada tes yang masih di bawah batas minimal. Tinjau pembahasan lalu coba lagi.';
+  document.body.classList.remove('ex');try{if(document.fullscreenElement)document.exitFullscreen()}catch(e){}
+  $('rrows').innerHTML+=`<span>Soal di atas 54 detik</span><b>${S.slow||0}</b>`;
+  const c=[...$('rrows').children].map(e=>e.textContent);let tx='Latihan SKD CPNS (MRAQ)\n'+MODES.find(m=>m.id===S.mode).name+'\n';for(let i=0;i<c.length;i+=2)tx+=c[i]+': '+c[i+1]+'\n';S.rtxt=tx;$('share').textContent='Salin hasil untuk dibagikan';
   show('result');scrollTo({top:0});
 }
 $('rev').onclick=()=>{S.review=true;S.cur=Math.max(0,S.A.findIndex((x,i)=>x===null||!okAt(i)));render();show('quiz');scrollTo({top:0})};
 $('again').onclick=start;
-$('tomenu').onclick=()=>{clearInterval(tid);show('menu');renderMenu();scrollTo({top:0})};
+$('tomenu').onclick=()=>{clearInterval(tid);document.body.classList.remove('ex');show('menu');renderMenu();scrollTo({top:0})};
 $('start').onclick=start;
+/* ---------- fitur tambahan ---------- */
+const TN={1:'TIU Deret angka',2:'TIU Hitung cepat',3:'TIU Kecukupan data',4:'TWK',5:'TKP',9:'Soal buatanmu'};
+function buildCustom(){R=rng(9009);return(ST.get().c||'').split('\n').map(x=>x.split('|').map(y=>y.trim())).filter(r=>r.length>=6&&r[0]).map(([q,a,...r])=>{const e=r.length>4?r.pop():'',o=shuf([a,...r.slice(0,4)]);return{key:q,ctx:()=>`<p class="stmt">${q}</p>`,ask:'Pilih jawaban yang paling tepat.',o,ci:o.indexOf(a),e:e||'Jawaban: '+a}})}
+function setGoal(){const d=ST.get();d.g=({10:20,20:30,30:50,50:10})[d.g||20]||20;ST.set(d);renderStats()}
+function renderStats(){const d=ST.get(),h=d.h||[],g=d.g||20,n=(d.dn||{})[new Date().toLocaleDateString('sv')]||0;
+  let x=`<div class="card" style="margin:8px 0"><button class="sec" style="margin:0 0 8px;text-align:left" onclick="setGoal()">Target harian: ${Math.min(n,g)}/${g} soal · ketuk untuk ubah</button><div class="bar" style="margin:0"><i style="width:${Math.min(100,n/g*100)}%"></i></div></div>`;
+  if(h.length){const L=h.slice(-20),px=i=>L.length>1?i*300/(L.length-1):150,py=p=>84-p*.8;
+    x+=`<div class="stat"><div><b>${h.length}</b><span>sesi</span></div><div><b>${Math.max(...h.map(e=>e.p))}%</b><span>terbaik</span></div><div><b>${Math.round(h.reduce((a,e)=>a+e.p,0)/h.length)}%</b><span>rata-rata</span></div><div><b>${streak(h)}</b><span>hari beruntun</span></div></div>`;
+    x+=`<div class="card" style="margin-bottom:8px"><p class="sub" style="margin:0 0 4px">Skor tiap sesi (%). Garis putus: batas TIU (46%) dan TKP (74%).</p><svg viewBox="0 0 300 90" style="width:100%;height:auto">${[46,74].map(v=>`<line x1="0" x2="300" y1="${py(v)}" y2="${py(v)}" stroke="var(--mute)" stroke-dasharray="4"/>`).join('')}<polyline fill="none" stroke="var(--acc)" stroke-width="2.5" points="${L.map((e,i)=>px(i)+','+py(e.p)).join(' ')}"/>${L.map((e,i)=>`<circle cx="${px(i)}" cy="${py(e.p)}" r="3" fill="var(--acc)"/>`).join('')}</svg></div>`;
+    const tp=Object.entries(d.tp||{}).filter(e=>TN[e[0]]);
+    if(tp.length)x+=`<div class="card"><p class="sub" style="margin:0 0 4px">Akurasi per jenis soal</p>`+tp.map(([m,[v,c]])=>`<div class="top" style="margin:6px 0 2px"><span>${TN[m]}</span><b>${Math.round(v/c*100)}%</b></div><div class="bar" style="margin:0"><i style="width:${v/c*100}%"></i></div>`).join('')+`</div>`}
+  $('stats').innerHTML=x}
+let CD={i:0,f:false,Q:[]};
+function cardRender(){const q=CD.Q[CD.i];$('cd').innerHTML=`<p class="sub">Kartu ${CD.i+1} dari ${CD.Q.length}</p>`+(CD.f?`<p class="big" style="font-size:1.15rem">${q.o[q.ci]}</p><p class="stmt">${q.e}</p>`:`<p class="stmt">${q.key}</p>`);$('cflip').textContent=CD.f?'Lihat soal':'Lihat jawaban'}
+function openCards(){CD.Q=bank(4).slice().sort(()=>Math.random()-.5);CD.i=0;CD.f=false;show('cards');cardRender();scrollTo({top:0})}
+$('exm').onclick=()=>{sel.exam=!sel.exam;renderMenu()};
+$('note').oninput=()=>{const q=S.Q[S.cur],d=ST.get();(d.n=d.n||{})[q.m+'|'+q.key]=$('note').value;ST.set(d)};
+$('csave').onclick=()=>{const d=ST.get();d.c=$('cus').value;ST.set(d);BANK[9]=null;$('cmsg').textContent=bank(9).length+' soal tersimpan.'};
+$('cfile').onchange=e=>{const f=e.target.files[0];if(f)f.text().then(t=>{$('cus').value+=($('cus').value?'\n':'')+t.trim()})};
+$('share').onclick=()=>{const t=S.rtxt;(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>{$('share').textContent='Tersalin!'}).catch(()=>prompt('Salin teks ini:',t))};
+$('cflip').onclick=()=>{CD.f=!CD.f;cardRender()};
+$('cnext').onclick=()=>{CD.i=(CD.i+1)%CD.Q.length;CD.f=false;cardRender()};
+$('cprev').onclick=()=>{CD.i=(CD.i+CD.Q.length-1)%CD.Q.length;CD.f=false;cardRender()};
+$('cback').onclick=()=>{show('menu');renderMenu()};
 renderMenu();
 </script>
 </body>

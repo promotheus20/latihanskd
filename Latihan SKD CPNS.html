@@ -1,0 +1,471 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Latihan SKD CPNS</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef3f7;--card:#fff;--ink:#14213d;--mute:#5b6b82;--line:#c9d4e0;--gl:#dde6ee;--acc:#0f766e;--accbg:#d5f0ec;--q:#f5b301;--qink:#3a2a00;--ok:#15803d;--okbg:#dcf5e3;--bad:#b42318;--badbg:#fde4e1;--selbg:#e3e9f5;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1621;--card:#16212f;--ink:#e6edf5;--mute:#93a4b8;--line:#2b3a4d;--gl:#152030;--acc:#2dd4bf;--accbg:#123a37;--ok:#4ade80;--okbg:#12351f;--bad:#f87171;--badbg:#3d1a17;--selbg:#22304a}}
+:root[data-theme="dark"]{--bg:#0e1621;--card:#16212f;--ink:#e6edf5;--mute:#93a4b8;--line:#2b3a4d;--gl:#152030;--acc:#2dd4bf;--accbg:#123a37;--ok:#4ade80;--okbg:#12351f;--bad:#f87171;--badbg:#3d1a17;--selbg:#22304a}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:Sora,system-ui,sans-serif;line-height:1.5;background-image:linear-gradient(var(--gl) 1px,transparent 1px),linear-gradient(90deg,var(--gl) 1px,transparent 1px);background-size:24px 24px}
+main{max-width:540px;margin:0 auto;padding:16px}
+h1{font-size:1.2rem;margin:4px 0 2px}
+h2{font-size:.95rem;margin:18px 0 8px}
+.sub{color:var(--mute);font-size:.85rem;margin:0 0 8px}
+button{font:inherit;color:var(--ink);cursor:pointer}
+button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.mode,.pace{display:block;width:100%;text-align:left;padding:12px 14px;margin-bottom:8px;border-radius:12px;border:1.5px solid var(--line);background:var(--card)}
+.mode strong,.pace strong{display:block;font-size:.95rem}
+.mode span,.pace span{font-size:.82rem;color:var(--mute)}
+.on{border-color:var(--acc);background:var(--accbg)}
+.seg{display:flex;gap:8px}
+.seg button{flex:1;padding:10px;border-radius:10px;border:1.5px solid var(--line);background:var(--card);font-size:.85rem}
+.go{width:100%;margin-top:16px;padding:14px;border-radius:12px;border:0;background:var(--ink);color:var(--bg);font-weight:700}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:.85rem;margin-bottom:8px;gap:8px}
+.top b{font-variant-numeric:tabular-nums}
+.tm{padding:3px 10px;border-radius:8px;background:var(--q);color:var(--qink);font-weight:700}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:12px}
+.bar i{display:block;height:100%;background:var(--acc);transition:width .25s}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.tbl{display:grid;grid-template-columns:repeat(3,1fr);border:2px solid var(--ink);border-radius:6px;overflow:hidden;margin:4px 0 16px}
+.tbl div{aspect-ratio:1.5;display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:700;border-right:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+.tbl div:nth-child(3n){border-right:0}
+.tbl div:nth-child(n+7){border-bottom:0}
+.tbl .q{background:var(--q);color:var(--qink)}
+.tbl .q.done{background:var(--accbg);color:var(--acc)}
+.dt{border-collapse:collapse;font-size:.85rem;margin:0 0 12px}
+.dt th,.dt td{border:1px solid var(--ink);padding:4px 10px;text-align:left}
+.stmt{margin:0 0 8px;font-size:.92rem}
+.big{font-size:1.5rem;font-weight:700;text-align:center;margin:8px 0 16px}
+.ask{font-size:.9rem;color:var(--mute);margin:0 0 8px}
+.opts{display:grid;gap:8px}
+.opts button{text-align:left;padding:11px 14px;border-radius:10px;border:1.5px solid var(--line);background:var(--card);display:flex;gap:12px;font-size:.9rem}
+.opts button b{color:var(--mute);min-width:1.2em}
+.opts button:not(:disabled):hover{border-color:var(--acc)}
+.opts button.sel{border-color:var(--acc);background:var(--selbg)}
+.opts button.ok{border-color:var(--ok);background:var(--okbg)}
+.opts button.bad{border-color:var(--bad);background:var(--badbg)}
+.opts button:disabled{cursor:default}
+.why{margin-top:14px;padding:12px 14px;border-radius:10px;background:var(--accbg);font-size:.88rem}
+.why strong{display:block;margin-bottom:4px;font-size:.95rem}
+.nav{display:flex;gap:10px;margin-top:14px}
+.nav button,.sec{flex:1;padding:11px 14px;border-radius:10px;border:1.5px solid var(--ink);background:var(--card)}
+.nav .primary{background:var(--ink);color:var(--bg)}
+.nav button:disabled{opacity:.35;cursor:default}
+.sec{width:100%;margin-top:10px}
+details{margin-top:16px}
+summary{cursor:pointer;font-size:.9rem;padding:6px 0}
+.pal{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;margin:8px 0}
+.pal button{font-size:.7rem;padding:6px 0;border-radius:6px;border:1px solid var(--line);background:var(--card)}
+.pal .ok{background:var(--okbg);border-color:var(--ok)}
+.pal .bad{background:var(--badbg);border-color:var(--bad)}
+.pal .sel{background:var(--selbg);border-color:var(--acc)}
+.pal .cur{outline:2px solid var(--acc)}
+.score{text-align:center;padding:20px 16px}
+.score .n{font-size:3rem;font-weight:700;line-height:1.1}
+.rows{display:grid;grid-template-columns:1fr auto;gap:6px 12px;font-size:.9rem;margin:14px 0 0;text-align:left}
+.rows b{font-variant-numeric:tabular-nums}
+.note{font-size:.8rem;color:var(--mute);margin-top:12px}
+</style>
+</head>
+<body>
+<main>
+
+<section id="menu">
+  <h1>Latihan SKD CPNS</h1>
+  <p class="sub">Format SKD CPNS 2025: TWK, TIU, dan TKP. Pilih satu tes saja atau tryout lengkap, semua dengan pembahasan.</p>
+  <h2>Jenis soal</h2>
+  <div id="modes"></div>
+  <h2>Cara latihan</h2>
+  <div id="paces"></div>
+  <div id="lens" class="seg" hidden></div>
+  <button class="go" id="start">Mulai latihan</button>
+  <p class="note">SKD asli: 110 soal dalam 100 menit (TWK 30, TIU 35, TKP 45), sekitar 54,5 detik per soal. TWK dan TIU: benar 5 poin (maks 150 dan 175, batas 65 dan 80). TKP: tiap pilihan bernilai 1 sampai 5 (maks 225, batas 156 sampai 166). Soal TIU dibuat acak tiap latihan, mengikuti pola prediksi 2027.</p>
+</section>
+
+<section id="quiz" hidden>
+  <div class="top"><span id="mname"></span><span id="tmw"></span></div>
+  <div class="bar"><i id="pb"></i></div>
+  <div class="top"><b id="no"></b><span id="sc"></span></div>
+  <div class="card">
+    <div id="ctx"></div>
+    <p class="ask" id="ask"></p>
+    <div class="opts" id="opts"></div>
+    <div id="why"></div>
+  </div>
+  <div class="nav"><button id="prev">Sebelumnya</button><button id="next" class="primary">Berikutnya</button></div>
+  <button class="sec" id="fin"></button>
+  <details><summary>Daftar soal</summary><div class="pal" id="pal"></div></details>
+</section>
+
+<section id="result" hidden>
+  <div class="card score">
+    <p class="sub">Hasil latihan</p>
+    <div class="n" id="rn"></div>
+    <p class="sub" id="rp"></p>
+    <div class="rows" id="rrows"></div>
+    <p class="note" id="rnote"></p>
+  </div>
+  <button class="go" id="rev">Tinjau jawaban dan pembahasan</button>
+  <button class="sec" id="again">Ulangi dengan soal baru</button>
+  <button class="sec" id="tomenu">Kembali ke menu</button>
+</section>
+
+<p class="note" style="text-align:center;margin:24px 0 8px">© 2026 MRAQ. Hak cipta dilindungi.</p>
+</main>
+<script>
+/* ---------- util ---------- */
+let R;
+const rng=s=>()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};
+const ri=(a,b)=>a+Math.floor(R()*(b-a+1)),pick=a=>a[ri(0,a.length-1)];
+const fmt=n=>n.toLocaleString('id-ID'),rp=n=>'Rp'+fmt(n),cap=s=>s[0].toUpperCase()+s.slice(1);
+const shuf=a=>{for(let i=a.length-1;i>0;i--){const j=ri(0,i);[a[i],a[j]]=[a[j],a[i]]}return a};
+const T=g=>[0,3,6,1,4,7,2,5,8].map(i=>g[i]),tm=m=>(m%3)*3+Math.floor(m/3);
+const $=id=>document.getElementById(id),L='ABCDE';
+function numOpts(ans){
+  const set=new Set([ans]),base=Math.max(2,Math.round(ans*.1)),ds=[1,-1,2,-2,3,-3,5,-5,10,-10];let n=0;
+  while(set.size<5){const v=ans+pick(ds)*pick([1,1,base]);if(v>0&&v<1e6)set.add(v);if(++n>80)set.add(ans+set.size*7)}
+  return[...set].sort((a,b)=>a-b);
+}
+
+/* ---------- mode 1: deret angka tabel ---------- */
+const OPS=[
+{s:(a,b)=>a+b,x:'a + b',g:()=>[ri(3,25),ri(3,25)]},
+{s:(a,b)=>a*b,x:'a × b',g:()=>[ri(2,9),ri(2,9)]},
+{s:(a,b)=>a-b,x:'a − b',g:()=>{const b=ri(2,15);return[b+ri(2,25),b]}},
+{s:(a,b)=>2*a+b,x:'2a + b',g:()=>[ri(2,15),ri(1,12)]},
+{s:(a,b)=>a*a-b,x:'a² − b',g:()=>{const a=ri(3,9);return[a,ri(1,a*a-1)]}},
+{s:(a,b)=>a*b+a,x:'a × b + a',g:()=>[ri(2,9),ri(2,8)]},
+{s:(a,b)=>(a+b)*2,x:'(a + b) × 2',g:()=>[ri(2,15),ri(2,15)]}];
+function opQ(tr,mid){
+  const o=pick(OPS),rows=[0,1,2].map(()=>{const[a,b]=o.g();return{a,b,c:o.s(a,b)}});
+  let g=rows.flatMap(r=>mid?[r.a,r.c,r.b]:[r.a,r.b,r.c]);
+  const k=ri(0,2),rw=rows[k],u=tr?'kolom':'baris';let m=k*3+(mid?1:2);
+  if(tr){g=T(g);m=tm(m)}
+  const how=mid?'a = angka pertama, b = angka ketiga, hasil di tengah':'a = angka pertama, b = angka kedua, hasil di angka ketiga';
+  return{g,m,ans:rw.c,e:`Pola tiap ${u}: ${o.x} (${how}). ${cap(u)} ke-${k+1}: a = ${rw.a}, b = ${rw.b}, hasilnya ${rw.c}.`};
+}
+function sumQ(tr){
+  const S=ri(24,60),u=tr?'kolom':'baris',rows=[0,1,2].map(()=>{const a=ri(3,S-12),b=ri(3,S-a-3);return[a,b,S-a-b]});
+  let g=rows.flat();const k=ri(0,2),j=ri(0,2);let m=k*3+j;
+  const rest=rows[k].filter((_,i)=>i!==j),ans=rows[k][j];
+  if(tr){g=T(g);m=tm(m)}
+  return{g,m,ans,e:`Jumlah tiap ${u} selalu ${S}. ${cap(u)} ke-${k+1}: ${S} − (${rest[0]} + ${rest[1]}) = ${ans}.`};
+}
+function patQ(tr,geo){
+  const u=tr?'kolom':'baris',rows=[0,1,2].map(()=>{
+    if(geo){const s=ri(1,5),r=ri(2,3);return{v:[s,s*r,s*r*r],d:r}}
+    const s=ri(1,20),d=ri(2,9);return{v:[s,s+d,s+2*d],d}});
+  let g=rows.flatMap(r=>r.v);const k=ri(0,2),j=ri(0,2);let m=k*3+j;const rw=rows[k];
+  if(tr){g=T(g);m=tm(m)}
+  const e=geo?`Angka tiap ${u} dikalikan bilangan tetap. ${cap(u)} ke-${k+1} dikalikan ${rw.d}: ${rw.v.join(', ')}.`:`Angka tiap ${u} naik dengan selisih tetap. ${cap(u)} ke-${k+1} selisihnya ${rw.d}: ${rw.v.join(', ')}.`;
+  return{g,m,ans:rw.v[j],e};
+}
+function kQ(){
+  const k0=ri(1,3),dk=ri(1,3),r1=[ri(4,16),ri(4,16),ri(4,16)],r2=[ri(2,6),ri(2,6),ri(2,6)];
+  const r3=r1.map((x,j)=>x+r2[j]*(k0+dk*j)),ks=[k0,k0+dk,k0+2*dk];
+  return{g:[...r1,...r2,...r3],m:8,ans:r3[2],e:`Angka baris 3 = baris 1 + (baris 2 × k), dengan k naik ${dk} tiap kolom: ${ks.join(', ')}. Kolom 1: ${r1[0]} + ${r2[0]} × ${ks[0]} = ${r3[0]}. Kolom 3: ${r1[2]} + ${r2[2]} × ${ks[2]} = ${r3[2]}.`};
+}
+function seqQ(){
+  const t=ri(0,5),A=n=>[...Array(9)].map((_,i)=>n(i));let s,e;
+  if(t===0){const a=ri(2,20),d=ri(2,9);s=A(i=>a+d*i);e=`Deret hitung: tiap angka bertambah ${d}.`}
+  else if(t===1){const a=ri(1,4),r=ri(2,3);s=A(i=>a*r**i);e=`Deret ukur: tiap angka dikalikan ${r}.`}
+  else if(t===2){const a=ri(1,10),d=ri(1,3);s=[a];for(let i=1;i<9;i++)s[i]=s[i-1]+d+i-1;e=`Selisih antar angka naik 1 tiap langkah: +${d}, +${d+1}, +${d+2}, dan seterusnya.`}
+  else if(t===3){const a=ri(2,15),b=ri(30,60),p=ri(2,6),q=ri(2,5);s=A(i=>i%2?b-q*((i-1)/2):a+p*(i/2));e=`Dua deret bersilang: posisi ganjil naik ${p}, posisi genap turun ${q}.`}
+  else if(t===4){const k=ri(-3,10),o=ri(1,3);s=A(i=>(i+o)**2+k);e=`Bilangan kuadrat berurutan (${o}², ${o+1}², ...)${k?(k>0?' ditambah ':' dikurangi ')+Math.abs(k):''}.`}
+  else{const a=ri(1,5),b=ri(1,6);s=[a,b];for(let i=2;i<9;i++)s[i]=s[i-1]+s[i-2];e='Tiap angka adalah jumlah dua angka sebelumnya.'}
+  const m=ri(3,8);return{g:s,m,ans:s[m],e:'Baca dari kiri ke kanan, atas ke bawah. '+e};
+}
+const MK1=[()=>opQ(0,0),()=>opQ(1,0),()=>opQ(0,1),()=>sumQ(0),()=>sumQ(1),()=>patQ(0,0),()=>patQ(1,0),()=>patQ(0,1),kQ,kQ,seqQ,seqQ];
+function q1(i){
+  const q=MK1[i%MK1.length](),o=numOpts(q.ans);
+  return{key:q.g.join()+q.m,ctx:rev=>`<div class="tbl">${q.g.map((v,j)=>j===q.m?`<div class="q${rev?' done':''}">${rev?q.ans:'?'}</div>`:`<div>${v}</div>`).join('')}</div>`,ask:'Angka berapakah yang melengkapi sel bertanda ?',o:o.map(String),ci:o.indexOf(q.ans),e:q.e};
+}
+
+/* ---------- mode 2: hitung cepat nilai yang sama ---------- */
+const NUMS=[15,16,18,20,24,25,28,30,32,35,36,40,45];
+function decoy(a,b,c,d){let r;do{r=[a,b,c,d];r[ri(0,3)]+=pick([-20,-10,-5,5,10,20])}while(r[0]*r[1]===r[2]*r[3]||r.some(z=>z<10));return r}
+function q2(i){
+  const v=[0,0,0,1,2][i%5],m=ri(4,9);let n,u,w;do n=ri(4,9);while(n===m);u=pick(NUMS);do w=pick(NUMS);while(w===u);
+  const a=m*u,b=n*w,c=m*w,d=n*u,tx=(x,y,z,t)=>`${x} × ${y} sama dengan ${z} × ${t}`;
+  if(v===0){
+    const set=new Map([[tx(a,b,c,d),true]]);
+    while(set.size<5){const r=decoy(a,b,c,d);set.set(tx(...r),r[0]*r[1]===r[2]*r[3])}
+    const ent=shuf([...set.entries()]),ci=ent.findIndex(x=>x[1]);
+    const lines=ent.map(([t,ok],k)=>{const p=t.match(/\d+/g).map(Number);return`${L[k]}. ${fmt(p[0]*p[1])} dan ${fmt(p[2]*p[3])}: ${p[0]*p[1]===p[2]*p[3]?'sama':'berbeda'}`}).join('<br>');
+    return{key:ent.map(x=>x[0]).join(),ctx:()=>'',ask:'Pasangan perkalian yang menunjukkan nilai yang sama adalah ...',o:ent.map(x=>x[0]),ci,e:`${lines}<br>Cara cepat: ${a} × ${b} dan ${c} × ${d} memuat faktor yang sama (${m}, ${u}, ${n}, ${w}), jadi hasilnya pasti sama. Untuk mencoret pilihan lain, cek dulu angka satuan hasil kali satuan masing-masing sisi.`};
+  }
+  if(v===1){
+    const o=numOpts(d);
+    return{key:'m'+a+b+c,ctx:()=>`<p class="big">${a} × ${b} = ${c} × ...</p>`,ask:'Angka yang tepat untuk mengisi titik-titik adalah ...',o:o.map(String),ci:o.indexOf(d),e:`${a} × ${b} = ${fmt(a*b)}. Lalu ${fmt(a*b)} ÷ ${c} = ${d}.<br>Cara cepat: ${a} = ${m} × ${u} dan ${c} = ${m} × ${w}. Faktor ${m} sudah sama di kedua sisi, sehingga angka yang dicari adalah ${n} × ${u} = ${d}.`};
+  }
+  const ps=new Map();while(ps.size<5){const x=ri(150,260),y=ri(150,260);ps.set(x*y,[x,y])}
+  const ent=shuf([...ps.entries()]),mx=Math.max(...ps.keys()),ci=ent.findIndex(e=>e[0]===mx);
+  return{key:'t'+ent.map(e=>e[0]).join(),ctx:()=>'',ask:'Perkalian yang hasilnya paling besar adalah ...',o:ent.map(e=>`${e[1][0]} × ${e[1][1]}`),ci,e:ent.map((e,k)=>`${L[k]}. ${e[1][0]} × ${e[1][1]} = ${fmt(e[0])}`).join('<br>')+`<br>Hasil terbesar adalah ${fmt(mx)} (pilihan ${L[ci]}). Cara cepat: bulatkan tiap angka ke puluhan terdekat lalu bandingkan, hitung teliti hanya untuk pilihan yang hasilnya berdekatan.`};
+}
+
+/* ---------- mode 3: kecukupan data ---------- */
+const NM=['Budi','Sinta','Andi','Rina','Dewi','Joko'],ITM=['jaket','tas','sepatu','topi','kemeja'];
+const TPL=[
+t=>{const it=pick(ITM),rb=ri(4,9)*10000,rj=rb+ri(3,8)*5000,P=ri(5,20)*10000,pct=pick([10,20,25]),mg=P*pct/100,Q=P+mg;
+  const pre=`<table class="dt"><tr><th>BARANG</th><th>HARGA BELI</th><th>HARGA JUAL</th></tr><tr><td>BUKU</td><td>${rp(rb)}</td><td>${rp(rj)}</td></tr><tr><td>${it.toUpperCase()}</td><td>P</td><td>Q</td></tr></table>`;
+  const base={pre,q:`Berapakah keuntungan yang diperoleh dari penjualan ${it}?`};
+  const full=`Harga beli ${it} ${rp(P)} dan harga jualnya ${rp(Q)}.`,fr=`Untung = ${rp(Q)} − ${rp(P)} = ${rp(mg)}. Cukup.`;
+  if(t==='A')return{...base,s1:full,r1:fr,s2:`Harga beli ${it} ${rp(P)}.`,r2:'Harga jual tidak diketahui. Tidak cukup.'};
+  if(t==='C')return{...base,s1:`Harga beli ${it} ${rp(P)}.`,r1:'Harga jual tidak diketahui. Tidak cukup.',s2:`Harga jual ${it} ${rp(Q)}.`,r2:'Harga beli tidak diketahui. Tidak cukup.',both:`${rp(Q)} − ${rp(P)} = ${rp(mg)}.`};
+  if(t==='D')return{...base,s1:full,r1:fr,s2:`Harga beli ${it} ${rp(P)} dan harga jualnya ${pct}% lebih tinggi dari harga belinya.`,r2:`Untung = ${pct}% × ${rp(P)} = ${rp(mg)}. Cukup.`};
+  return{...base,s1:`Harga jual ${it} lebih tinggi dari harga belinya.`,r1:'Tidak ada angka. Tidak cukup.',s2:`Harga beli ${it} sama dengan harga beli buku, yaitu ${rp(rb)}.`,r2:'Hanya harga beli yang diketahui. Tidak cukup.',both:'Harga beli diketahui, tetapi harga jual tetap tidak diketahui.'};},
+t=>{const ve=pick(['sepeda motor','mobil','bus']),v=ri(4,12)*10,h=ri(2,5),d=v*h,o=ri(12000,19000);
+  const base={pre:`<p class="stmt">Sebuah ${ve} berangkat dari kota P ke kota Q dengan kecepatan tetap.</p>`,q:`Berapa kilometer jarak yang ditempuh ${ve} tersebut?`};
+  const full=`Kecepatan ${ve} ${v} km/jam dan waktu tempuhnya ${h} jam.`,fr=`Jarak = ${v} × ${h} = ${d} km. Cukup.`;
+  if(t==='A')return{...base,s1:full,r1:fr,s2:`Kecepatan ${ve} ${v} km/jam.`,r2:'Waktu tidak diketahui. Tidak cukup.'};
+  if(t==='C')return{...base,s1:`Kecepatan ${ve} ${v} km/jam.`,r1:'Waktu tidak diketahui. Tidak cukup.',s2:`Waktu tempuhnya ${h} jam.`,r2:'Kecepatan tidak diketahui. Tidak cukup.',both:`${v} × ${h} = ${d} km.`};
+  if(t==='D')return{...base,s1:full,r1:fr,s2:`Odometer sebelum berangkat ${fmt(o)} km dan setelah tiba ${fmt(o+d)} km.`,r2:`Jarak = ${fmt(o+d)} − ${fmt(o)} = ${d} km. Cukup.`};
+  return{...base,s1:`Kecepatan ${ve} lebih dari ${v-10} km/jam.`,r1:'Hanya batas bawah, nilai pastinya tidak diketahui. Tidak cukup.',s2:`Waktu tempuhnya kurang dari ${h+1} jam.`,r2:'Hanya batas atas, nilai pastinya tidak diketahui. Tidak cukup.',both:'Dua batas saja tidak menghasilkan satu nilai jarak yang pasti.'};},
+t=>{const [A,B]=shuf(NM.slice()),x=ri(25,45),y=ri(3,9),y2=ri(3,9),z=ri(3,9);
+  const base={pre:'',q:`Berapa umur ${A} sekarang?`};
+  const fr=`Umur sekarang = ${x-y} + ${y} = ${x} tahun. Cukup.`;
+  if(t==='A')return{...base,s1:`${y} tahun yang lalu umur ${A} adalah ${x-y} tahun.`,r1:fr,s2:`${A} lebih tua daripada ${B}.`,r2:'Tidak ada angka umur. Tidak cukup.'};
+  if(t==='C')return{...base,s1:`${A} berumur ${z} tahun lebih tua daripada ${B}.`,r1:`Umur ${B} tidak diketahui. Tidak cukup.`,s2:`Umur ${B} sekarang ${x-z} tahun.`,r2:`Selisih umur tidak diketahui. Tidak cukup.`,both:`${x-z} + ${z} = ${x} tahun.`};
+  if(t==='D')return{...base,s1:`${y} tahun yang lalu umur ${A} adalah ${x-y} tahun.`,r1:fr,s2:`${y2} tahun lagi umur ${A} adalah ${x+y2} tahun.`,r2:`Umur sekarang = ${x+y2} − ${y2} = ${x} tahun. Cukup.`};
+  return{...base,s1:`${A} lebih tua daripada ${B}.`,r1:'Tidak ada angka. Tidak cukup.',s2:`Umur ${B} sekarang ${x-z} tahun.`,r2:`Umur ${A} hanya diketahui lebih dari ${x-z}. Tidak cukup.`,both:`Umur ${A} hanya diketahui lebih dari ${x-z}, nilai pastinya tidak ada.`};},
+t=>{const p=ri(8,20),l=ri(4,p-1),K=2*(p+l),base={pre:'<p class="stmt">Sebuah persegi panjang memiliki panjang dan lebar yang belum diketahui.</p>',q:'Berapa luas persegi panjang tersebut (dalam cm²)?'};
+  const full=`Panjangnya ${p} cm dan lebarnya ${l} cm.`,fr=`Luas = ${p} × ${l} = ${p*l} cm². Cukup.`;
+  if(t==='A')return{...base,s1:full,r1:fr,s2:`Kelilingnya ${K} cm.`,r2:'Dari keliling saja ada banyak pasangan panjang dan lebar. Tidak cukup.'};
+  if(t==='C')return{...base,s1:`Panjangnya ${p} cm.`,r1:'Lebar tidak diketahui. Tidak cukup.',s2:`Lebarnya ${l} cm.`,r2:'Panjang tidak diketahui. Tidak cukup.',both:`${p} × ${l} = ${p*l} cm².`};
+  if(t==='D')return{...base,s1:full,r1:fr,s2:`Kelilingnya ${K} cm dan panjangnya ${p} cm.`,r2:`Lebar = ${K} ÷ 2 − ${p} = ${l} cm, luas = ${p*l} cm². Cukup.`};
+  return{...base,s1:'Panjangnya lebih besar daripada lebarnya.',r1:'Tidak ada angka. Tidak cukup.',s2:`Kelilingnya ${K} cm.`,r2:'Ada banyak pasangan panjang dan lebar. Tidak cukup.',both:'Keliling dan syarat panjang > lebar masih cocok untuk banyak pasangan ukuran.'};},
+t=>{const it=pick(ITM),H=ri(10,50)*10000,d=pick([10,20,25,30,40,50]),pot=H*d/100,by=H-pot,base={pre:'',q:`Berapa rupiah yang harus dibayar untuk membeli ${it} setelah diskon?`};
+  const full=`Harga ${it} sebelum diskon ${rp(H)} dan diskonnya ${d}%.`,fr=`Bayar = ${rp(H)} − ${d}% = ${rp(by)}. Cukup.`;
+  if(t==='A')return{...base,s1:full,r1:fr,s2:`Diskonnya ${d}%.`,r2:'Harga sebelum diskon tidak diketahui. Tidak cukup.'};
+  if(t==='C')return{...base,s1:`Harga ${it} sebelum diskon ${rp(H)}.`,r1:'Diskon tidak diketahui. Tidak cukup.',s2:`Diskonnya ${d}%.`,r2:'Harga awal tidak diketahui. Tidak cukup.',both:`${rp(H)} − ${d}% = ${rp(by)}.`};
+  if(t==='D')return{...base,s1:full,r1:fr,s2:`Potongan harganya ${rp(pot)} dan harga sebelum diskon ${rp(H)}.`,r2:`Bayar = ${rp(H)} − ${rp(pot)} = ${rp(by)}. Cukup.`};
+  return{...base,s1:`Diskonnya lebih dari 10%.`,r1:'Hanya batas bawah diskon. Tidak cukup.',s2:`Harga sebelum diskon lebih dari ${rp(H-20000)}.`,r2:'Hanya batas bawah harga. Tidak cukup.',both:'Dua batas bawah tidak menghasilkan satu nilai pasti.'};}
+];
+const OP3=['Pernyataan (1) SAJA cukup untuk menjawab pertanyaan, tetapi pernyataan (2) SAJA tidak cukup.','Pernyataan (2) SAJA cukup untuk menjawab pertanyaan, tetapi pernyataan (1) SAJA tidak cukup.','DUA pernyataan BERSAMA-SAMA cukup untuk menjawab pertanyaan, tetapi SATU pernyataan SAJA tidak cukup.','Pernyataan (1) SAJA cukup DAN pernyataan (2) SAJA cukup untuk menjawab pertanyaan.','Pernyataan (1) dan (2) TIDAK cukup untuk menjawab pertanyaan.'];
+const CON={A:'hanya pernyataan (1) yang cukup.',B:'hanya pernyataan (2) yang cukup.',C:'masing-masing tidak cukup, tetapi bersama-sama cukup.',D:'masing-masing cukup sendiri.',E:'walaupun digabung, data tetap tidak cukup.'};
+function q3(i){
+  const type='ABCDE'[i%5],t=pick(TPL)(type==='B'?'A':type);let{s1,s2,r1,r2}=t;
+  if(type==='B'){[s1,s2]=[s2,s1];[r1,r2]=[r2,r1]}
+  const ci='ABCDE'.indexOf(type),html=`${t.pre}<p class="stmt"><b>Pertanyaan utama:</b> ${t.q}</p><p class="stmt"><b>Pernyataan (1):</b> ${s1}</p><p class="stmt"><b>Pernyataan (2):</b> ${s2}</p>`;
+  return{key:html,ctx:()=>html,ask:'Pilih jawaban yang paling tepat.',o:OP3,ci,e:`<b>Pernyataan (1):</b> ${r1}<br><b>Pernyataan (2):</b> ${r2}<br>`+(t.both?`<b>Digabung:</b> ${t.both}<br>`:'')+`<b>Kesimpulan:</b> ${CON[type]}`};
+}
+
+/* ---------- TWK & TKP ---------- */
+const TWK=`Pancasila ditetapkan sebagai dasar negara oleh PPKI pada|18 Agustus 1945|1 Juni 1945|22 Juni 1945|17 Agustus 1945|29 Mei 1945|PPKI mengesahkan Pancasila dan UUD 1945 sehari setelah proklamasi.
+Panitia Sembilan yang merumuskan Piagam Jakarta diketuai oleh|Ir. Soekarno|Moh. Hatta|Moh. Yamin|Soepomo|Ki Bagus Hadikusumo|Soekarno memimpin Panitia Sembilan pada 22 Juni 1945.
+Negara Indonesia adalah negara hukum, ditegaskan dalam|Pasal 1 ayat (3)|Pasal 1 ayat (1)|Pasal 1 ayat (2)|Pasal 27 ayat (1)|Pasal 28|Pasal 1 ayat (3) UUD 1945 hasil perubahan ketiga.
+Kedaulatan berada di tangan rakyat dan dilaksanakan menurut UUD, diatur dalam|Pasal 1 ayat (2)|Pasal 1 ayat (1)|Pasal 1 ayat (3)|Pasal 2 ayat (1)|Pasal 6A|Itulah bunyi Pasal 1 ayat (2).
+UUD 1945 telah mengalami perubahan (amandemen) sebanyak|4 kali|2 kali|3 kali|5 kali|6 kali|Empat kali, dalam kurun 1999 sampai 2002.
+Lembaga yang berwenang menguji undang-undang terhadap UUD 1945 adalah|Mahkamah Konstitusi|Mahkamah Agung|DPR|MPR|Komisi Yudisial|Kewenangan tersebut ada pada Mahkamah Konstitusi.
+Semboyan Bhinneka Tunggal Ika diambil dari kitab|Sutasoma|Negarakertagama|Pararaton|Arjunawiwaha|Babad Tanah Jawi|Kitab Sutasoma karya Mpu Tantular.
+Sumpah Pemuda diikrarkan pada|28 Oktober 1928|20 Mei 1908|17 Agustus 1945|28 Oktober 1945|1 Juni 1945|Kongres Pemuda II, 28 Oktober 1928.
+Ikrar ketiga Sumpah Pemuda adalah|Menjunjung bahasa persatuan, bahasa Indonesia|Bertumpah darah yang satu|Berbangsa yang satu|Berideologi yang satu|Berpemerintahan yang satu|Ikrar pertama tanah air, kedua bangsa, ketiga bahasa.
+Proklamasi kemerdekaan dibacakan di|Jl. Pegangsaan Timur 56|Lapangan Ikada|Rengasdengklok|Istana Merdeka|Gedung Joang 45|Proklamasi dibacakan di kediaman Soekarno di Pegangsaan Timur 56.
+Peristiwa Rengasdengklok adalah|Golongan muda membawa Soekarno dan Hatta agar segera memproklamasikan kemerdekaan|Perundingan dengan Belanda|Pembacaan teks proklamasi|Pengesahan UUD 1945|Pembentukan BPUPKI|Terjadi pada 16 Agustus 1945.
+Isi pokok Dekrit Presiden 5 Juli 1959 adalah|Kembali berlakunya UUD 1945|Berlakunya UUDS 1950|Berlakunya Konstitusi RIS|Pembentukan negara serikat|Pengangkatan presiden seumur hidup|Dekrit membubarkan Konstituante dan memberlakukan kembali UUD 1945.
+Konferensi Asia Afrika 1955 diselenggarakan di|Bandung|Jakarta|Yogyakarta|Surabaya|Bogor|KAA berlangsung di Bandung.
+Dasar konstitusional hak dan kewajiban bela negara terdapat pada|Pasal 27 ayat (3)|Pasal 28A|Pasal 31 ayat (1)|Pasal 33 ayat (1)|Pasal 34|Pasal 27 ayat (3) tentang pembelaan negara.
+Yang BUKAN termasuk empat pilar kebangsaan adalah|Trias politika|Pancasila|UUD NRI Tahun 1945|NKRI|Bhinneka Tunggal Ika|Empat pilar: Pancasila, UUD NRI 1945, NKRI, Bhinneka Tunggal Ika.
+Deklarasi Djuanda 1957 menyatakan bahwa|Laut di antara pulau-pulau Indonesia adalah bagian dari wilayah NKRI|Laut teritorial Indonesia selebar 3 mil|ZEE Indonesia sejauh 200 mil|Irian Barat bagian dari NKRI|Belanda mengakui kedaulatan RI|Deklarasi ini dasar Wawasan Nusantara.
+Lambang sila kelima Pancasila adalah|Padi dan kapas|Bintang|Rantai|Pohon beringin|Kepala banteng|Padi dan kapas melambangkan keadilan sosial.
+Kebebasan memeluk agama dan beribadah dijamin dalam|Pasal 29 ayat (2)|Pasal 28|Pasal 31|Pasal 32|Pasal 33|Pasal 29 ayat (2) UUD 1945.
+Pemilihan Presiden dan Wakil Presiden secara langsung pertama kali terjadi pada|Pemilu 2004|Pemilu 1999|Pemilu 2009|Pemilu 1955|Pemilu 1971|Setelah perubahan UUD, pilpres langsung dimulai 2004.
+Perang Diponegoro (1825 sampai 1830) juga dikenal sebagai|Perang Jawa|Perang Padri|Perang Aceh|Perang Banjar|Perang Puputan|Perang terbesar di Jawa melawan Belanda.
+Hasil Perundingan Linggarjati 1946 adalah|Belanda mengakui Jawa, Madura, dan Sumatra sebagai wilayah RI secara de facto|Belanda mengakui kedaulatan seluruh Indonesia|Dibentuknya RIS|Irian Barat diserahkan ke RI|Indonesia keluar dari PBB|Pengakuan de facto hanya atas tiga wilayah itu.
+Pancasila sebagai ideologi terbuka artinya|Mampu berinteraksi dengan perkembangan zaman tanpa mengubah nilai dasarnya|Nilai dasarnya dapat diganti penguasa|Menolak semua pengaruh asing|Hanya berlaku dalam negeri|Tidak boleh ditafsirkan|Nilai dasar tetap, nilai instrumental dapat berkembang.
+Sistem pemerintahan Indonesia menurut UUD 1945 adalah|Presidensial|Parlementer|Monarki konstitusional|Federal|Otoriter|Presiden adalah kepala negara sekaligus kepala pemerintahan.
+Undang-undang yang saat ini mengatur pemerintahan daerah adalah|UU No. 23 Tahun 2014|UU No. 22 Tahun 1999|UU No. 32 Tahun 2004|UU No. 5 Tahun 1974|UU No. 6 Tahun 2014|UU 23/2014 menggantikan UU 32/2004.
+Ibu kota negara baru, Nusantara, berada di provinsi|Kalimantan Timur|Kalimantan Tengah|Kalimantan Selatan|Kalimantan Barat|Kalimantan Utara|Nusantara terletak di Kalimantan Timur.
+Pasal 33 ayat (3) UUD 1945 menyatakan bumi, air, dan kekayaan alam dikuasai negara untuk|Sebesar-besar kemakmuran rakyat|Kepentingan pemerintah|Kepentingan investor|Pendapatan daerah|Cadangan devisa|Bunyi pasalnya: sebesar-besar kemakmuran rakyat.
+Lagu Indonesia Raya pertama kali diperdengarkan pada|Kongres Pemuda II 1928|Proklamasi 1945|Konferensi Asia Afrika 1955|Sidang BPUPKI|Dekrit Presiden 1959|W.R. Supratman memperdengarkannya di Kongres Pemuda II.
+Wujud cinta tanah air di era digital adalah|Memeriksa kebenaran informasi dan tidak menyebarkan hoaks|Membagikan berita tanpa memeriksa|Menolak semua produk luar negeri|Menyebar ujaran kebencian|Bersikap apatis|Literasi digital bagian dari nasionalisme.
+Masa jabatan Presiden menurut UUD 1945 paling lama|Dua kali masa jabatan, masing-masing 5 tahun|Tiga kali masa jabatan|Satu kali 7 tahun|Tidak dibatasi|Dua kali masa jabatan 7 tahun|Pasal 7 UUD 1945.`.split('\n').map(x=>x.split('|'));
+const TKP=`Warga melengkapi berkas, tetapi satu dokumen kurang dan antrean panjang. Anda...|Menjelaskan dokumen yang kurang dan cara melengkapinya|Memberi daftar syarat tertulis|Mengarahkan ke petugas informasi|Meminta kembali besok|Menerima berkas tanpa dokumen itu agar cepat|Pelayanan publik: informatif, ramah, tetap sesuai aturan.
+Atasan menyuruh Anda menaikkan nilai kuitansi. Anda...|Menolak sopan, menjelaskan aturan, dan melapor ke saluran pengaduan bila dipaksa|Menolak dan menjelaskan alasannya|Menunda tanpa memberi jawaban|Mengerjakan sambil menyimpan bukti|Mengerjakan sesuai perintah|Integritas: menolak manipulasi dan memakai jalur resmi.
+Rekan beda suku dikucilkan di kantor. Anda...|Mengajaknya bergabung dan mengingatkan rekan lain menghargai perbedaan|Mengajaknya bergabung|Melapor ke atasan|Membiarkan|Ikut menjauhinya|Sosial budaya: inklusif dan aktif menjaga kerukunan.
+Anda menemukan hoaks bernuansa SARA di grup kantor. Anda...|Mengklarifikasi dengan sumber resmi, meminta berhenti menyebar, dan melapor ke admin|Mengklarifikasi di grup|Mengabaikan tetapi tidak menyebarkan|Hanya membacanya|Meneruskan ke grup lain agar waspada|Cegah penyebaran hoaks secara aktif.
+Aplikasi layanan baru belum Anda kuasai. Anda...|Belajar mandiri dari panduan, bertanya ke yang ahli, dan berlatih|Mengikuti pelatihan saat ada|Menunggu instruksi|Tetap memakai cara lama|Meminta rekan mengerjakan|TIK: proaktif belajar teknologi baru.
+Banyak tugas menumpuk dengan tenggat besok. Anda...|Menyusun prioritas, mengerjakan yang mendesak, dan melapor kendala sejak awal|Lembur menyelesaikan semuanya|Meminta perpanjangan di menit akhir|Mengerjakan yang mudah dulu|Menyerahkan tidak lengkap tanpa kabar|Profesional: prioritas dan komunikasi dini.
+Warga marah karena layanan lambat. Anda...|Mendengarkan tenang, meminta maaf, menjelaskan kendala dan estimasi waktu|Menjelaskan dengan tenang saja|Menyerahkan ke atasan|Membalas dengan tegas|Mengabaikannya|Empati dan solusi meredakan emosi warga.
+Warga memberi uang terima kasih setelah dilayani. Anda...|Menolak sopan dan menjelaskan larangan gratifikasi, melapor bila sulit ditolak|Menolak dengan sopan|Menerima lalu membagi ke rekan|Menerima karena tulus|Meminta lebih|Gratifikasi harus ditolak atau dilaporkan.
+Ide Anda dikritik keras dalam rapat. Anda...|Mendengarkan, menanyakan alasan, lalu memperbaiki ide|Membela dengan data|Diam saja|Tersinggung dan menarik diri|Membalas menyerang|Kritik adalah bahan perbaikan.
+Teman menawarkan jalur calo agar lulus tes dengan membayar. Anda...|Menolak tegas dan melaporkan ke pihak berwenang|Menolak tegas dan menasihatinya|Menolak tanpa komentar|Menanyakan detailnya dulu|Menerima tawaran|Integritas sejak proses seleksi.
+Anda ditempatkan di daerah dengan budaya berbeda. Anda...|Siap, mempelajari adat setempat dan beradaptasi|Siap menerima|Menerima dengan setengah hati|Meminta pindah segera|Menolak penempatan|Adaptif dan menghargai budaya setempat.
+Rekan sering terlambat sehingga tim terganggu. Anda...|Bicara baik-baik, menanyakan kendala, dan membantu mencari solusi|Mengingatkannya|Melapor ke atasan|Menyindir di grup|Mengeluh tanpa bicara padanya|Komunikasi langsung dan solutif.
+Anda keliru memasukkan data pada laporan yang sudah terkirim. Anda...|Segera mengakui ke atasan, merevisi, dan mencegah terulang|Merevisi dan mengirim ulang|Menunggu ada yang menyadari|Menyalahkan sistem|Menutupi kesalahan|Bertanggung jawab dan transparan.
+Atasan meminta kendaraan dinas dipakai urusan keluarganya. Anda...|Menolak sopan dan menjelaskan aturan aset negara|Menawarkan alternatif lain|Menyampaikan keberatan|Menurut sambil mengeluh|Menurut saja|Aset negara untuk kepentingan dinas.
+Anda ingin berkembang sebagai ASN. Anda...|Aktif mengikuti pelatihan dan membagikan ilmunya ke rekan|Mengikuti pelatihan yang tersedia|Belajar bila disuruh|Merasa sudah cukup|Menolak pelatihan|Pengembangan diri dan berbagi pengetahuan.
+Warga lansia kesulitan memakai layanan daring. Anda...|Mendampingi dengan sabar sampai selesai sambil menjelaskan langkahnya|Mengisikan langsung untuknya|Mengarahkan ke loket manual|Meminta anaknya saja yang datang|Menyuruhnya belajar sendiri|Layanan inklusif bagi semua warga.
+Rekan mengajak Anda ke kelompok yang menolak Pancasila. Anda...|Menolak, menjelaskan pentingnya Pancasila, dan melapor bila meresahkan|Menolak dan menjelaskan|Menolak lalu menjauh|Mendengarkan dulu|Ikut bergabung|Anti-radikalisme: tegas menjaga ideologi negara.
+Dua rekan dekat Anda berkonflik dan mengganggu kerja. Anda...|Mempertemukan mereka berdiskusi secara netral|Menasihati masing-masing|Melapor ke atasan|Diam dan netral|Memihak salah satu|Mediasi menjaga kerja sama tim.
+Teman wartawan meminta informasi internal yang belum dipublikasi. Anda...|Menolak, menjelaskan tidak berwenang, dan mengarahkan ke humas|Menolak saja|Memberi informasi umum saja|Memberi tanpa menyebut nama|Memberikannya|Informasi internal lewat jalur resmi.
+Anda diminta mengerjakan tugas di luar jabatan karena posisi kosong. Anda...|Menerima, mengerjakan dengan baik, dan berkoordinasi soal prioritas|Menerima dan mengerjakan|Menerima setelah protes|Mengerjakan asal selesai|Menolak|Fleksibel dan bertanggung jawab.`.split('\n').map(x=>x.split('|'));
+const TWK2=`Hari Kesaktian Pancasila diperingati setiap tanggal|1 Oktober|1 Juni|2 Mei|20 Mei|28 Oktober|Mengenang peristiwa 1965 dan keteguhan Pancasila.
+Hari Lahir Pancasila diperingati setiap tanggal|1 Juni|18 Agustus|22 Juni|1 Oktober|17 Agustus|Soekarno berpidato tentang dasar negara pada 1 Juni 1945.
+MPR terdiri atas|Anggota DPR dan anggota DPD|DPR dan Presiden|DPR dan Mahkamah Agung|DPD dan Mahkamah Konstitusi|Presiden dan Wakil Presiden|Pasal 2 ayat (1) UUD 1945.
+Lembaga yang menjaga kehormatan dan perilaku hakim adalah|Komisi Yudisial|Mahkamah Konstitusi|Mahkamah Agung|DPR|BPK|Komisi Yudisial dibentuk melalui perubahan ketiga UUD.
+Tugas pokok Badan Pemeriksa Keuangan adalah|Memeriksa pengelolaan dan tanggung jawab keuangan negara|Menguji undang-undang|Memilih Presiden|Membuat undang-undang|Mengadili sengketa pemilu|Diatur dalam Pasal 23E UUD 1945.
+Lembaga penyelenggara pemilu adalah|KPU|Bawaslu|DKPP|Mahkamah Konstitusi|DPR|Bawaslu mengawasi, DKPP menegakkan etik, KPU menyelenggarakan.
+Hari Kebangkitan Nasional diperingati karena berdirinya|Budi Utomo|Sarekat Islam|Indische Partij|Taman Siswa|Muhammadiyah|Budi Utomo berdiri 20 Mei 1908.
+Hari Pahlawan 10 November mengenang|Pertempuran Surabaya 1945|Bandung Lautan Api|Pertempuran Ambarawa|Puputan Margarana|Serangan Umum 1 Maret|Pertempuran Surabaya melawan sekutu dan NICA.
+Teks proklamasi diketik oleh|Sayuti Melik|Fatmawati|Soekarno|Moh. Hatta|Achmad Soebardjo|Sayuti Melik mengetik naskah dari tulisan tangan Soekarno.
+Bendera pusaka Sang Saka Merah Putih dijahit oleh|Fatmawati|S.K. Trimurti|Rahmi Hatta|Maria Ulfah|R.A. Kartini|Fatmawati menjahitnya pada 1944.
+Hak asasi manusia diatur dalam UUD 1945 pada|Bab XA (Pasal 28A sampai 28J)|Bab I|Bab VII|Bab XII|Bab IX|Bab XA khusus memuat hak asasi manusia.
+Menghargai pendapat orang lain dalam musyawarah sesuai dengan sila ke|Empat|Satu|Dua|Tiga|Lima|Sila keempat tentang kerakyatan dan permusyawaratan.
+Contoh ancaman nonmiliter di era digital adalah|Serangan siber dan disinformasi|Invasi bersenjata|Pemberontakan bersenjata|Agresi udara|Blokade laut|Ancaman nonmiliter tidak memakai kekuatan senjata.
+Zona Ekonomi Eksklusif Indonesia selebar|200 mil laut dari garis pangkal|3 mil laut|12 mil laut|24 mil laut|350 mil laut|Menurut UNCLOS 1982; laut teritorial 12 mil.
+Kedudukan Pancasila dalam tata hukum Indonesia adalah|Sumber dari segala sumber hukum negara|Peraturan pemerintah|Peraturan daerah|Hanya pedoman moral|Ketetapan biasa|Pancasila menjadi sumber hukum tertinggi.
+Dasar hukum otonomi daerah dalam UUD 1945 terdapat pada|Pasal 18|Pasal 7|Pasal 20|Pasal 24|Pasal 30|Pasal 18 mengatur pemerintahan daerah.`.split("\n").map(x=>x.split("|"));
+const TKP2=`Rekan baru kesulitan beradaptasi. Anda...|Mendampingi, mengenalkan alur kerja, dan memberi ruang bertanya|Memberi panduan tertulis|Menyuruhnya bertanya ke atasan|Membiarkannya belajar sendiri|Menertawakan kesalahannya|Kerja sama dan mentoring.
+Dalam kerja kelompok ada anggota yang pasif. Anda...|Mengajak diskusi dan membagi tugas sesuai kemampuannya|Menegur lalu mengerjakan sebagian|Melapor ke atasan|Mengerjakan semuanya sendiri|Membiarkan kelompok gagal|Mengaktifkan anggota tim.
+Menjelang tutup, warga baru datang untuk dilayani. Anda...|Tetap melayani sampai selesai sesuai aturan|Melayani dan menyarankan datang lebih awal lain kali|Mengarahkan datang besok|Meminta menunggu tanpa kepastian|Menutup loket|Berorientasi pelayanan.
+Anda tahu rekan menyelewengkan dana kecil. Anda...|Melapor lewat saluran resmi dengan bukti|Menegur langsung rekan itu|Menyampaikan ke atasan secara lisan tanpa bukti|Pura-pura tidak tahu|Meminta bagian|Integritas dan pelaporan resmi.
+Informasi layanan berubah mendadak. Anda...|Segera mempelajarinya lalu menyampaikan ke warga dan rekan|Menunggu surat edaran resmi|Menjelaskan sesuai ingatan lama|Menyuruh warga mencari tahu sendiri|Mengabaikan|Cepat beradaptasi dan akurat.
+Anda diminta presentasi tetapi kurang percaya diri. Anda...|Menyiapkan materi, berlatih, dan menerima masukan|Meminta rekan mendampingi|Meminta orang lain menggantikan|Menolak tugas|Berpura-pura sakit|Mengembangkan diri.
+Anda berbeda pendapat dengan atasan soal cara kerja. Anda...|Menyampaikan alternatif dengan data secara sopan lalu menghormati keputusan|Menyampaikan sekali lalu menurut|Menurut tanpa menyampaikan|Menggerutu di belakang|Mengerjakan diam-diam dengan cara sendiri|Komunikasi asertif.
+Penyandang disabilitas datang ke loket Anda. Anda...|Memprioritaskan dan menyesuaikan layanan dengan kebutuhannya|Membantu bila diminta|Menyuruh antre seperti biasa|Mengarahkan ke petugas lain|Mengabaikan|Pelayanan inklusif.
+Anda melihat fasilitas kantor rusak dan berbahaya. Anda...|Melapor ke bagian terkait dan memberi tanda agar tidak ada yang celaka|Melapor ke atasan|Memperbaiki seadanya sendiri|Membiarkan|Menyalahkan petugas|Peduli dan bertanggung jawab.
+Diskusi politik di grup kantor memanas. Anda...|Menenangkan, mengingatkan netralitas ASN, dan mengalihkan ke topik kerja|Mengingatkan netralitas ASN|Keluar dari grup|Ikut berdebat|Membela satu pihak|ASN wajib netral.
+Atasan meminta lembur tanpa kejelasan. Anda...|Bersedia dan menanyakan prioritas serta batas waktunya|Bersedia saja|Bersedia sambil menggerutu|Menawar tanpa alasan|Menolak|Siap bekerja dan komunikatif.
+Rekan menyalin pekerjaan Anda dan mengaku miliknya. Anda...|Menegur baik-baik dan, bila berulang, melapor dengan bukti|Menegur saja|Melapor tanpa bicara dulu|Membiarkan|Membalas dengan hal serupa|Integritas dan penyelesaian bertahap.
+Vendor menawari hadiah sebelum proses pengadaan. Anda...|Menolak dan melaporkan ke unit pengendali gratifikasi|Menolak dengan sopan|Menolak lalu bercerita ke rekan|Menerima dan mengembalikan nanti|Menerima|Cegah konflik kepentingan.
+Sistem online error saat antrean menumpuk. Anda...|Menenangkan warga, beralih ke cara manual darurat, dan melapor ke teknisi|Menjelaskan dan melapor ke teknisi|Menunggu perbaikan|Meminta warga pulang|Menyalahkan sistem|Layanan tetap berjalan.
+Anda diminta mengajari rekan senior memakai teknologi baru. Anda...|Memandu langkah demi langkah dengan hormat|Memberi panduan tertulis|Mengajari seadanya|Menyuruhnya belajar mandiri|Menolak karena merasa tidak pantas|Berbagi ilmu dengan santun.
+Rekan beragama lain sedang merayakan hari besarnya. Anda...|Mengucapkan selamat, menghormati, dan membantu menyesuaikan jadwal kerja|Mengucapkan selamat|Bersikap biasa saja|Mengeluhkan beban kerja|Mengejek|Toleransi aktif.
+Anda belum paham SOP baru. Anda...|Mempelajari SOP, bertanya, dan mempraktikkannya sampai paham|Bertanya ke rekan saat butuh|Mengikuti kebiasaan lama|Menunggu ditegur|Mengabaikannya|Profesionalisme.
+Warga mengkritik layanan kantor di media sosial. Anda...|Menanggapi sopan lewat kanal resmi dan menindaklanjuti keluhan|Melapor ke bagian humas|Membiarkan|Membalas dengan emosi|Menghapus komentar|Responsif terhadap kritik.
+Dua atasan memberi tugas penting bersamaan. Anda...|Mengomunikasikan ke keduanya dan menyepakati prioritas|Mengerjakan sesuai atasan yang lebih senior|Mengerjakan yang lebih mudah|Mengerjakan satu dan diam soal lainnya|Mengeluh|Komunikasi menyelesaikan benturan tugas.
+Rekan sakit sementara tugasnya mendesak. Anda...|Berkoordinasi dengan atasan lalu membantu sebatas kemampuan|Menawarkan bantuan|Menunggu diminta|Mengabaikan|Menyalahkan rekan|Kerja sama tim.
+Anda menemukan dokumen rahasia tercecer. Anda...|Mengamankan dan menyerahkannya ke pimpinan atau bagian terkait|Mengembalikan ke meja pemiliknya|Membacanya dulu|Memotretnya|Membuangnya|Menjaga kerahasiaan.
+Terjadi perundungan terhadap rekan di kantor. Anda...|Menolong korban, menegur pelaku, dan melapor ke atasan|Menolong korban saja|Melapor tanpa menolong|Diam|Ikut menertawakan|Keberpihakan pada korban.
+Warga meminta layanan di luar wewenang Anda. Anda...|Menjelaskan batas kewenangan dan mengarahkan ke instansi yang tepat|Menolak dengan sopan|Meneruskan ke rekan|Menjanjikan akan diusahakan|Menolak dengan ketus|Layanan informatif.
+Anda dipuji karena berprestasi dan rekan merasa iri. Anda...|Tetap rendah hati dan berbagi ilmu|Tetap rendah hati|Menjelaskan prestasi secara berlebihan|Menghindari rekan|Menyombongkan diri|Rendah hati dan kolaboratif.
+Perubahan struktur organisasi mengubah peran Anda. Anda...|Menerima, mempelajari peran baru, dan aktif berkoordinasi|Menerima saja|Menerima setelah mengeluh|Menunda adaptasi|Menolak|Adaptif terhadap perubahan.`.split("\n").map(x=>x.split("|"));
+function buildTWK(){R=rng(4004);return TWK.concat(TWK2).map(([q,a,...r])=>{const e=r.pop(),o=shuf([a,...r]);return{key:q,ctx:()=>`<p class="stmt">${q}</p>`,ask:'Pilih jawaban yang paling tepat.',o,ci:o.indexOf(a),e}})}
+function buildTKP(){R=rng(5005);return TKP.concat(TKP2).map(([q,...r])=>{const e=r.pop(),ix=shuf([0,1,2,3,4]),o=ix.map(i=>r[i]),sc=ix.map(i=>5-i);return{key:q,ctx:()=>`<p class="stmt">${q}</p>`,ask:'Pilih respons yang paling tepat. Tiap pilihan bernilai 1 sampai 5.',o,sc,ci:sc.indexOf(5),e:e+'<br>Poin: '+sc.map((p,i)=>L[i]+' = '+p).join(', ')}})}
+function pool(){const m=sel.mode,sh=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a},tg=(a,t)=>a.map(q=>({...q,t}));
+  if(m===6)return[...sh(tg(bank(4),'TWK')).slice(0,30),...tg(sh([...bank(1),...bank(2),...bank(3)]).slice(0,35),'TIU'),...sh(tg(bank(5),'TKP')).slice(0,45)];
+  if(m>3)return sh(tg(bank(m),m===4?'TWK':'TKP'));
+  return sh(tg(bank(m),'TIU')).slice(0,sel.pace==='waktu'?sel.len:100)}
+/* ---------- bank ---------- */
+const MODES=[
+{id:6,name:'Tryout SKD lengkap',d:'TWK, TIU, lalu TKP berurutan, dengan skor tiap tes dan batas kelulusan.'},
+{id:4,name:'TWK · Wawasan Kebangsaan',d:'Pancasila, UUD 1945, NKRI, Bhinneka Tunggal Ika, sejarah, bela negara. 45 soal.'},
+{id:5,name:'TKP · Karakteristik Pribadi',d:'Pelayanan publik, integritas, TIK, jejaring kerja, sosial budaya. 45 soal, nilai 1 sampai 5.'},
+{id:1,name:'TIU · Deret angka tabel 3×3',d:'Lengkapi angka yang hilang dari pola baris, kolom, atau urutan.',gen:q1},
+{id:2,name:'TIU · Hitung cepat nilai yang sama',d:'Bandingkan hasil perkalian dan temukan pasangan yang nilainya sama.',gen:q2},
+{id:3,name:'TIU · Kecukupan data',d:'Tentukan apakah pernyataan (1) dan (2) cukup untuk menjawab pertanyaan.',gen:q3}];
+const BANK={};
+function bank(id){
+  if(BANK[id])return BANK[id];if(id===4)return BANK[4]=buildTWK();if(id===5)return BANK[5]=buildTKP();
+  R=rng(id*1000+7);const m=MODES.find(x=>x.id===id),out=[],seen=new Set();let g=0;
+  while(out.length<100&&g++<5000){const q=m.gen(out.length);if(seen.has(q.key))continue;seen.add(q.key);out.push(q)}
+  return BANK[id]=out;
+}
+
+/* ---------- menu ---------- */
+const sel={mode:1,pace:'santai',len:35};
+const PACES=[['santai','Santai','Tanpa batas waktu. Pilih jawaban (boleh diganti), lalu tekan Cek jawaban untuk melihat benar atau salah beserta pembahasan.'],['waktu','Berwaktu','Hitung mundur seperti ujian. Jawaban bisa diubah, pembahasan muncul setelah selesai.']];
+const LENS=[[35,'35 soal · 32 menit'],[100,'100 soal · 91 menit']];
+function renderMenu(){
+  $('modes').innerHTML=MODES.map(m=>`<button class="mode ${sel.mode===m.id?'on':''}" data-m="${m.id}"><strong>${m.name}</strong><span>${m.d}</span></button>`).join('');
+  $('paces').innerHTML=PACES.map(p=>`<button class="pace ${sel.pace===p[0]?'on':''}" data-p="${p[0]}"><strong>${p[1]}</strong><span>${p[2]}</span></button>`).join('');
+  $('lens').hidden=sel.pace!=='waktu'||sel.mode>3;
+  $('lens').innerHTML=LENS.map(l=>`<button class="${sel.len===l[0]?'on':''}" data-l="${l[0]}">${l[1]}</button>`).join('');
+}
+$('modes').onclick=e=>{const b=e.target.closest('button');if(b){sel.mode=+b.dataset.m;renderMenu()}};
+$('paces').onclick=e=>{const b=e.target.closest('button');if(b){sel.pace=b.dataset.p;renderMenu()}};
+$('lens').onclick=e=>{const b=e.target.closest('button');if(b){sel.len=+b.dataset.l;renderMenu()}};
+
+/* ---------- quiz ---------- */
+let S=null,tid=null;
+const show=id=>['menu','quiz','result'].forEach(x=>$(x).hidden=x!==id);
+const mmss=s=>String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
+function start(){
+  clearInterval(tid);
+  const Q=pool(),N=Q.length;
+    S={mode:sel.mode,pace:sel.pace,Q:Q.slice(0,N),A:Array(N).fill(null),C:Array(N).fill(false),cur:0,review:false,total:Math.round(N*54.5),t0:Date.now(),used:0};
+  if(S.pace==='waktu'){S.end=Date.now()+S.total*1000;tid=setInterval(tick,500)}
+  show('quiz');render();scrollTo({top:0});
+}
+function tick(){
+  const rem=Math.max(0,Math.ceil((S.end-Date.now())/1000));
+  const el=$('tm');if(el)el.textContent=mmss(rem);
+  if(rem<=0)finish();
+}
+const okAt=i=>S.A[i]===S.Q[i].ci,pts=i=>{const q=S.Q[i],a=S.A[i];return a===null?0:q.sc?q.sc[a]:(a===q.ci?5:0)};
+const shown=i=>S.review||(S.pace==='santai'&&S.C[i]);
+function render(){
+  const q=S.Q[S.cur],a=S.A[S.cur],N=S.Q.length,fb=shown(S.cur),rev=fb;
+  $('mname').textContent=MODES.find(m=>m.id===S.mode).name+(S.review?' · tinjauan':'');
+  $('tmw').innerHTML=S.pace==='waktu'&&!S.review?`<span class="tm" id="tm">${mmss(Math.max(0,Math.ceil((S.end-Date.now())/1000)))}</span>`:'';
+  $('no').textContent=`Soal ${S.cur+1} dari ${N}`;
+  const ans=S.A.filter(x=>x!==null).length,live=S.pace==='santai'&&!S.review,chkN=S.C.filter(Boolean).length,ok=S.A.filter((x,i)=>x!==null&&okAt(i)&&(!live||S.C[i])).length;
+  $('sc').textContent=live?`Benar ${ok} dari ${chkN} dicek`:S.review?`Benar ${ok} dari ${ans} dijawab`:`Terjawab ${ans} dari ${N}`;
+  $('pb').style.width=(ans/N*100)+'%';
+  $('ctx').innerHTML=q.ctx(rev);$('ask').textContent=q.ask;
+  $('opts').innerHTML=q.o.map((v,i)=>{
+    let c='';
+    if(fb){if(rev&&i===q.ci)c='ok';else if(i===a)c='bad'}else if(i===a)c='sel';
+    return`<button data-i="${i}" class="${c}" ${fb?'disabled':''}><b>${L[i]}.</b><span>${v}</span></button>`;
+  }).join('');
+  $('why').innerHTML=rev?`<div class="why"><strong>${a===null?'Belum dijawab. Jawaban yang benar: '+L[q.ci]:q.sc?'Poin '+q.sc[a]+' dari 5. Jawaban terbaik: '+L[q.ci]:a===q.ci?'Benar':'Salah. Jawaban yang benar: '+L[q.ci]}</strong>${q.e}</div>`:'';
+  const needCheck=S.pace==='santai'&&!S.review&&a!==null&&!S.C[S.cur];
+  $('prev').disabled=S.cur===0;
+  $('next').textContent=needCheck?'Cek jawaban':'Berikutnya';
+  $('next').disabled=!needCheck&&S.cur===N-1;
+  $('fin').textContent=S.review?'Kembali ke hasil':'Selesai dan lihat skor';
+  $('pal').innerHTML=S.Q.map((x,i)=>{
+    const v=S.A[i];let c=v===null?'':shown(i)?(okAt(i)?'ok':'bad'):'sel';if(i===S.cur)c+=' cur';
+    return`<button data-n="${i}" class="${c}">${i+1}</button>`;
+  }).join('');
+}
+$('opts').onclick=e=>{
+  const b=e.target.closest('button');if(!b||b.disabled)return;
+  S.A[S.cur]=+b.dataset.i;render();
+};
+$('prev').onclick=()=>{if(S.cur>0){S.cur--;render()}};
+$('next').onclick=()=>{
+  if(S.pace==='santai'&&!S.review&&S.A[S.cur]!==null&&!S.C[S.cur]){S.C[S.cur]=true;render();return}
+  if(S.cur<S.Q.length-1){S.cur++;render()}
+};
+$('pal').onclick=e=>{const b=e.target.closest('button');if(b){S.cur=+b.dataset.n;render();scrollTo({top:0})}};
+$('fin').onclick=()=>S.review?showResult():finish();
+
+/* ---------- hasil ---------- */
+function finish(){
+  clearInterval(tid);
+  if(S.pace==='waktu')S.used=Math.min(S.total,Math.round((Date.now()-S.t0)/1000));
+  showResult();
+}
+function showResult(){
+  S.review=false;
+  const N=S.Q.length,ok=S.A.filter((x,i)=>x!==null&&okAt(i)).length,kos=S.A.filter(x=>x===null).length,FULL={TWK:[150,65],TIU:[175,80],TKP:[225,166]};
+  let rows='',pass=true,n=0,sum=0;
+  ['TWK','TIU','TKP'].forEach(t=>{const ix=S.Q.map((q,i)=>q.t===t?i:-1).filter(i=>i>=0);if(!ix.length)return;
+    const f=FULL[t],sc=Math.round(ix.reduce((a,i)=>a+pts(i),0)/(ix.length*5)*f[0]);n++;sum+=sc;if(sc<f[1])pass=false;
+    rows+=`<span>${t} (maks ${f[0]}, batas ${f[1]})</span><b>${sc} ${sc>=f[1]?'✓':'✗'}</b>`});
+  if(n>1)rows+=`<span>Total setara (batas 311)</span><b>${sum}</b>`;
+  $('rn').textContent=`${ok} / ${N}`;
+  $('rp').textContent=`${Math.round(ok/N*100)}% benar atau terbaik`;
+  $('rrows').innerHTML=`<span>Benar atau terbaik</span><b>${ok}</b><span>Kosong</span><b>${kos}</b>`+(S.pace==='waktu'?`<span>Waktu terpakai</span><b>${mmss(S.used)} dari ${mmss(S.total)}</b>`:'')+rows;
+  $('rnote').textContent=pass?'Semua skor setara sudah di atas batas minimal. Pertahankan.':'Ada tes yang masih di bawah batas minimal. Tinjau pembahasan lalu coba lagi.';
+  show('result');scrollTo({top:0});
+}
+$('rev').onclick=()=>{S.review=true;S.cur=Math.max(0,S.A.findIndex((x,i)=>x===null||!okAt(i)));render();show('quiz');scrollTo({top:0})};
+$('again').onclick=start;
+$('tomenu').onclick=()=>{clearInterval(tid);show('menu');renderMenu();scrollTo({top:0})};
+$('start').onclick=start;
+renderMenu();
+</script>
+</body>
+</html>
+
+</body></html>

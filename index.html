@@ -453,6 +453,313 @@ SOP yang berlaku tampak keliru. Anda...|Mengajukan usulan perbaikan lewat jalur 
 Atasan baru bergaya kerja berbeda. Anda...|Menyesuaikan diri dan membangun komunikasi|Mengamati dulu|Mengeluh|Bersikap dingin|Meminta pindah|Adaptif.
 Kenalan mengundang Anda ke kampanye partai. Anda...|Menolak dan menjaga netralitas ASN|Menolak datang saja|Datang tanpa seragam|Datang berseragam|Mengajak rekan|Netralitas ASN.
 Anda diminta berbagi pengalaman di forum kantor. Anda...|Bersedia dan menyiapkan materi yang bermanfaat|Bersedia tanpa persiapan|Menolak karena grogi|Menyuruh rekan menggantikan|Menolak sambil mengejek|Berbagi ilmu.`.split("\n").map(x=>x.split("|"));
+/* ---------- generator soal dari tabel fakta ---------- */
+const CATS=[
+{f:k=>`Hal yang diatur dalam ${k} UUD 1945 adalah`,r:v=>`Ketentuan tentang ${v} diatur dalam`,d:`Pasal 1 ayat (1)|bentuk negara kesatuan yang berbentuk republik
+Pasal 1 ayat (2)|kedaulatan berada di tangan rakyat
+Pasal 1 ayat (3)|negara Indonesia adalah negara hukum
+Pasal 2 ayat (1)|susunan keanggotaan MPR
+Pasal 6A|pemilihan Presiden dan Wakil Presiden secara langsung
+Pasal 7|masa jabatan Presiden dan Wakil Presiden
+Pasal 7A|pemberhentian Presiden dan/atau Wakil Presiden
+Pasal 9|sumpah atau janji Presiden dan Wakil Presiden
+Pasal 11|persetujuan DPR atas pernyataan perang dan perjanjian internasional
+Pasal 12|pernyataan keadaan bahaya
+Pasal 13|pengangkatan duta dan konsul
+Pasal 14|pemberian grasi, rehabilitasi, amnesti, dan abolisi
+Pasal 17|kementerian negara
+Pasal 18|pembagian daerah dan pemerintahan daerah
+Pasal 18B|pengakuan satuan pemerintahan daerah yang bersifat khusus atau istimewa
+Pasal 19|keanggotaan DPR yang dipilih melalui pemilu
+Pasal 20|kekuasaan DPR membentuk undang-undang
+Pasal 22C|keanggotaan DPD
+Pasal 22E|pelaksanaan pemilihan umum
+Pasal 23|anggaran pendapatan dan belanja negara
+Pasal 23D|bank sentral
+Pasal 23E|Badan Pemeriksa Keuangan
+Pasal 24|kekuasaan kehakiman
+Pasal 24A|Mahkamah Agung
+Pasal 24B|Komisi Yudisial
+Pasal 24C|Mahkamah Konstitusi
+Pasal 25A|wilayah Indonesia sebagai negara kepulauan
+Pasal 26|kewarganegaraan dan penduduk
+Pasal 27 ayat (1)|kesamaan kedudukan warga negara di dalam hukum dan pemerintahan
+Pasal 27 ayat (2)|hak atas pekerjaan dan penghidupan yang layak
+Pasal 27 ayat (3)|hak dan kewajiban ikut serta dalam pembelaan negara
+Pasal 28|kebebasan berserikat, berkumpul, dan mengeluarkan pikiran
+Pasal 28A|hak untuk hidup dan mempertahankan kehidupan
+Pasal 28E|kebebasan memeluk agama dan meyakini kepercayaan
+Pasal 28F|hak berkomunikasi dan memperoleh informasi
+Pasal 28H|hak hidup sejahtera dan pelayanan kesehatan
+Pasal 28I|hak asasi yang tidak dapat dikurangi dalam keadaan apa pun
+Pasal 29|negara berdasar atas Ketuhanan Yang Maha Esa
+Pasal 30|usaha pertahanan dan keamanan negara
+Pasal 31|pendidikan nasional
+Pasal 32|kebudayaan nasional
+Pasal 33|perekonomian nasional
+Pasal 34|kesejahteraan sosial
+Pasal 35|bendera negara
+Pasal 36|bahasa negara
+Pasal 36A|lambang negara
+Pasal 36B|lagu kebangsaan
+Pasal 37|perubahan UUD`},
+{f:k=>`Peristiwa ${k} terjadi pada`,d:`Proklamasi kemerdekaan Indonesia|17 Agustus 1945
+Pengesahan UUD 1945 oleh PPKI|18 Agustus 1945
+Rengasdengklok|16 Agustus 1945
+Pertempuran Surabaya|10 November 1945
+Penandatanganan Piagam Jakarta|22 Juni 1945
+Pidato Soekarno tentang dasar negara|1 Juni 1945
+Dekrit Presiden|5 Juli 1959
+Supersemar|11 Maret 1966
+Mundurnya Presiden Soeharto|21 Mei 1998
+Bandung Lautan Api|24 Maret 1946
+Serangan Umum di Yogyakarta|1 Maret 1949
+Pengakuan kedaulatan hasil KMB|27 Desember 1949
+Agresi Militer Belanda II|19 Desember 1948
+Pembukaan Konferensi Asia Afrika|18 April 1955
+Berdirinya Budi Utomo|20 Mei 1908
+Penandatanganan Perjanjian Renville|17 Januari 1948
+Berdirinya ASEAN|8 Agustus 1967
+Deklarasi Djuanda|13 Desember 1957
+Pengumuman Trikora|19 Desember 1961
+Sidang pertama BPUPKI dimulai|29 Mei 1945`},
+{f:k=>`${k} diperingati setiap tanggal`,d:`Hari Kartini|21 April
+Hari Pendidikan Nasional|2 Mei
+Hari Kebangkitan Nasional|20 Mei
+Hari Lahir Pancasila|1 Juni
+Hari Kesaktian Pancasila|1 Oktober
+Hari Sumpah Pemuda|28 Oktober
+Hari Pahlawan|10 November
+Hari Bela Negara|19 Desember
+Hari Guru Nasional|25 November
+Hari Ibu|22 Desember
+Hari Santri|22 Oktober
+Hari Anti Korupsi Sedunia|9 Desember
+Hari Konstitusi|18 Agustus
+Hari TNI|5 Oktober
+Hari Bhayangkara|1 Juli
+Hari Batik Nasional|2 Oktober
+Hari Otonomi Daerah|25 April
+Hari Nusantara|13 Desember`},
+{f:k=>`${k} dikenal sebagai`,r:v=>`Tokoh yang dikenal sebagai ${v} adalah`,d:`Ir. Soekarno|Presiden pertama dan proklamator kemerdekaan
+Moh. Hatta|Wakil Presiden pertama dan proklamator kemerdekaan
+Moh. Yamin|tokoh perumus teks Sumpah Pemuda
+Soepomo|pengusul konsep negara integralistik di sidang BPUPKI
+Ki Hajar Dewantara|Bapak Pendidikan Nasional
+R.A. Kartini|pelopor emansipasi perempuan
+Dewi Sartika|pendiri sekolah perempuan Sakola Istri di Bandung
+Cut Nyak Dhien|pejuang perempuan dari Aceh
+Pangeran Diponegoro|pemimpin Perang Jawa 1825 sampai 1830
+Sultan Hasanuddin|Ayam Jantan dari Timur
+Pattimura|pemimpin perlawanan rakyat Maluku tahun 1817
+Tuanku Imam Bonjol|pemimpin Perang Padri
+Sisingamangaraja XII|raja dan pejuang dari Tanah Batak
+W.R. Supratman|pencipta lagu Indonesia Raya
+Fatmawati|penjahit bendera pusaka Sang Saka Merah Putih
+Sayuti Melik|pengetik naskah proklamasi
+Jenderal Sudirman|Panglima Besar pertama Tentara Nasional Indonesia
+Sutan Sjahrir|Perdana Menteri pertama Republik Indonesia
+Mohammad Natsir|pencetus Mosi Integral 1950
+Ir. Djuanda|tokoh Deklarasi Djuanda 1957
+H.O.S. Tjokroaminoto|pemimpin Sarekat Islam yang dijuluki Raja Jawa tanpa Mahkota
+K.H. Ahmad Dahlan|pendiri Muhammadiyah
+K.H. Hasyim Asyari|pendiri Nahdlatul Ulama
+dr. Soetomo|pendiri Budi Utomo
+Haji Agus Salim|diplomat yang dijuluki The Grand Old Man
+Achmad Soebardjo|Menteri Luar Negeri pertama Republik Indonesia
+Gajah Mada|Mahapatih Majapahit pencetus Sumpah Palapa
+Tan Malaka|penulis buku Naar de Republiek
+Haji Samanhudi|pendiri Sarekat Dagang Islam
+Mohammad Husni Thamrin|tokoh Betawi anggota Volksraad`},
+{f:k=>`Fungsi atau tugas utama ${k} adalah`,r:v=>`Lembaga yang bertugas ${v} adalah`,d:`MPR|mengubah dan menetapkan UUD serta melantik Presiden
+DPR|menjalankan fungsi legislasi, anggaran, dan pengawasan
+DPD|mengajukan rancangan undang-undang yang berkaitan dengan daerah
+Mahkamah Agung|memeriksa kasasi dan menguji peraturan di bawah undang-undang
+Mahkamah Konstitusi|menguji undang-undang terhadap UUD 1945
+Komisi Yudisial|menjaga kehormatan dan perilaku hakim
+Badan Pemeriksa Keuangan|memeriksa pengelolaan dan tanggung jawab keuangan negara
+KPU|menyelenggarakan pemilihan umum
+Bawaslu|mengawasi penyelenggaraan pemilu
+DKPP|menegakkan kode etik penyelenggara pemilu
+KPK|memberantas tindak pidana korupsi
+Ombudsman RI|mengawasi penyelenggaraan pelayanan publik
+Bank Indonesia|menjaga stabilitas nilai rupiah
+OJK|mengawasi sektor jasa keuangan
+Komnas HAM|memajukan dan melindungi hak asasi manusia
+BKN|menyelenggarakan manajemen kepegawaian ASN
+Lembaga Administrasi Negara|mengembangkan kompetensi dan kajian kebijakan administrasi negara
+Kementerian PANRB|mengurus aparatur negara dan reformasi birokrasi
+Bappenas|merencanakan pembangunan nasional
+BPS|menyelenggarakan statistik resmi
+BNPB|menanggulangi bencana
+BSSN|menjaga keamanan siber nasional
+PPATK|menelusuri transaksi keuangan yang mencurigakan
+BNN|mencegah dan memberantas narkotika
+BNPT|menanggulangi terorisme
+Basarnas|melaksanakan pencarian dan pertolongan
+BMKG|memberi informasi cuaca, iklim, dan gempa bumi`},
+{f:k=>`${k} berdiri pada tahun`,d:`Sarekat Dagang Islam|1905
+Budi Utomo|1908
+Sarekat Islam|1912
+Muhammadiyah|1912
+Indische Partij|1912
+Jong Java|1915
+Partai Komunis Indonesia|1920
+Taman Siswa|1922
+Perhimpunan Indonesia|1925
+Nahdlatul Ulama|1926
+Partai Nasional Indonesia|1927
+Gerakan Non-Blok|1961
+ASEAN|1967`},
+{f:k=>`Lambang ${k} Pancasila adalah`,r:v=>`${cap(v)} adalah lambang`,d:`sila pertama|bintang
+sila kedua|rantai
+sila ketiga|pohon beringin
+sila keempat|kepala banteng
+sila kelima|padi dan kapas`},
+{f:k=>`${cap(k)} Pancasila berbunyi`,r:v=>`${v} adalah bunyi`,d:`sila pertama|Ketuhanan Yang Maha Esa
+sila kedua|Kemanusiaan yang adil dan beradab
+sila ketiga|Persatuan Indonesia
+sila keempat|Kerakyatan yang dipimpin oleh hikmat kebijaksanaan dalam permusyawaratan/perwakilan
+sila kelima|Keadilan sosial bagi seluruh rakyat Indonesia`},
+{f:k=>`${k} mengatur tentang`,r:v=>`Undang-undang yang mengatur ${v} adalah`,d:`UU No. 20 Tahun 2023|Aparatur Sipil Negara
+UU No. 23 Tahun 2014|pemerintahan daerah
+UU No. 6 Tahun 2014|desa
+UU No. 3 Tahun 2002|pertahanan negara
+UU No. 2 Tahun 2002|Kepolisian Negara Republik Indonesia
+UU No. 34 Tahun 2004|Tentara Nasional Indonesia
+UU No. 12 Tahun 2011|pembentukan peraturan perundang-undangan
+UU No. 7 Tahun 2017|pemilihan umum
+UU No. 24 Tahun 2003|Mahkamah Konstitusi
+UU No. 30 Tahun 2002|Komisi Pemberantasan Korupsi
+UU No. 25 Tahun 2009|pelayanan publik
+UU No. 37 Tahun 2008|Ombudsman Republik Indonesia
+UU No. 14 Tahun 2008|keterbukaan informasi publik
+UU No. 11 Tahun 2008|informasi dan transaksi elektronik
+UU No. 39 Tahun 1999|hak asasi manusia
+UU No. 20 Tahun 2003|sistem pendidikan nasional
+UU No. 3 Tahun 2022|Ibu Kota Negara
+UU No. 24 Tahun 2007|penanggulangan bencana
+UU No. 24 Tahun 2009|bendera, bahasa, lambang negara, dan lagu kebangsaan
+UU No. 27 Tahun 2022|pelindungan data pribadi
+UU No. 32 Tahun 2009|perlindungan dan pengelolaan lingkungan hidup
+UU No. 17 Tahun 2003|keuangan negara
+UU No. 13 Tahun 2003|ketenagakerjaan`},
+{f:k=>`Kerajaan ${k} dikenal sebagai atau berkaitan dengan`,r:v=>`Kerajaan yang dikenal sebagai atau berkaitan dengan ${v} adalah`,d:`Kutai|kerajaan Hindu tertua di Indonesia dengan prasasti Yupa
+Tarumanegara|Raja Purnawarman dan Prasasti Ciaruteun
+Sriwijaya|kerajaan maritim dengan pusat di sekitar Palembang
+Mataram Kuno|dinasti Syailendra dan pembangunan Candi Borobudur
+Singasari|Ken Arok dan Kertanegara
+Majapahit|Hayam Wuruk, Gajah Mada, dan Sumpah Palapa
+Kediri|Raja Jayabaya
+Samudera Pasai|kerajaan Islam pertama di Indonesia
+Demak|kerajaan Islam pertama di Pulau Jawa
+Mataram Islam|Sultan Agung
+Banten|Sultan Ageng Tirtayasa
+Gowa-Tallo|Sultan Hasanuddin
+Ternate dan Tidore|penghasil rempah-rempah di Maluku`}];
+function buildFacts(){R=rng(7007);const out=[];
+  CATS.forEach(c=>{const P=c.d.split('\n').map(x=>x.split('|'));
+    P.forEach(p=>[[c.f,0,1],[c.r,1,0]].forEach(([fn,a,b])=>{if(!fn)return;
+      const w=shuf([...new Set(P.map(x=>x[b]).filter(x=>x!==p[b]))]).slice(0,4);if(w.length<4)return;
+      const o=shuf([p[b],...w]),q=fn(p[a]);
+      out.push({key:q,ctx:()=>`<p class="stmt">${q}</p>`,ask:'Pilih jawaban yang paling tepat.',o,ci:o.indexOf(p[b]),e:`${cap(p[0])}: ${p[1]}.`})}))});
+  return out}
+const LAD={
+I:['Menolak tegas, menjelaskan aturannya, dan melaporkannya lewat jalur resmi','Menolak tegas dan menjelaskan aturannya','Menolak dengan halus tanpa penjelasan','Ragu-ragu lalu menuruti sebagian','Menuruti permintaan itu'],
+L:['Menangani dengan ramah, menjelaskan solusi, dan memastikan urusannya tuntas','Membantu sesuai kewenangan dan memberi penjelasan','Mengarahkan ke petugas lain','Meminta warga kembali di lain waktu','Mengabaikannya'],
+K:['Berbicara langsung dengan baik-baik dan mencari solusi bersama','Meminta bantuan atasan untuk menengahi','Menghindari masalah itu','Membicarakannya dengan rekan lain','Membalas dengan sikap yang sama'],
+A:['Segera mempelajarinya secara mandiri, bertanya, dan mempraktikkannya','Mengikuti pelatihan yang tersedia','Menunggu arahan atasan','Tetap memakai cara lama','Menghindari perubahan itu'],
+T:['Segera mengakui, memperbaiki, dan mencegah agar tidak terulang','Memperbaiki dan melaporkannya ke atasan','Memperbaiki secara diam-diam','Menunggu sampai ada yang menyadari','Menutupinya'],
+S:['Menghormati, aktif menjaga kerukunan, dan meluruskan informasi yang keliru','Menghormati dan tidak ikut memperkeruh suasana','Bersikap netral dan menjauh','Mengabaikannya','Ikut memperkeruh suasana']};
+const NOTE={I:'Integritas: tolak, jelaskan aturan, lalu laporkan.',L:'Pelayanan publik: ramah, solutif, dan tuntas.',K:'Kerja sama: komunikasi langsung dan solutif.',A:'Adaptasi: proaktif belajar hal baru.',T:'Tanggung jawab: akui, perbaiki, dan cegah terulang.',S:'Sosial budaya: hormati perbedaan dan jaga persatuan.'};
+const TKG=`I|Atasan menyuruh Anda menggelembungkan biaya perjalanan dinas. Anda...
+I|Warga menyelipkan uang agar berkasnya didahulukan. Anda...
+I|Rekan meminta Anda mengisi absennya padahal ia tidak hadir. Anda...
+I|Vendor menawarkan komisi bila Anda memenangkan tendernya. Anda...
+I|Teman menawarkan jalur titipan agar anaknya lolos seleksi. Anda...
+I|Atasan meminta Anda memakai mobil dinas untuk acara keluarga. Anda...
+I|Rekan mengajak membagi sisa anggaran kegiatan secara pribadi. Anda...
+I|Kerabat meminta Anda mengubah data agar mendapat bantuan sosial. Anda...
+I|Atasan meminta Anda menghapus catatan temuan audit. Anda...
+I|Rekan meminta Anda meloloskan dokumen yang belum lengkap. Anda...
+I|Pemohon izin memberi Anda hadiah mahal. Anda...
+I|Pimpinan memerintahkan Anda membuat laporan kegiatan fiktif. Anda...
+I|Pejabat meminta Anda membocorkan soal ujian internal. Anda...
+I|Teman meminta Anda memakai wewenang untuk mempercepat urusan keluarganya. Anda...
+I|Atasan menyuruh Anda menandatangani dokumen yang belum Anda periksa. Anda...
+I|Kolega mengajak Anda memanipulasi data kinerja agar target tercapai. Anda...
+I|Rekan menyuruh Anda menyalin pekerjaan orang lain sebagai hasil Anda. Anda...
+L|Warga marah karena berkasnya ditolak. Anda...
+L|Seorang lansia kesulitan mengisi formulir layanan. Anda...
+L|Warga datang dengan dokumen yang kurang. Anda...
+L|Antrean panjang dan warga mulai mengeluh. Anda...
+L|Warga bertanya tentang layanan yang bukan wewenang Anda. Anda...
+L|Penyandang disabilitas datang ke loket layanan. Anda...
+L|Warga menyampaikan keluhan lewat kotak saran. Anda...
+L|Sistem layanan mendadak error saat banyak warga menunggu. Anda...
+L|Warga tidak paham prosedur pengajuan izin. Anda...
+L|Ibu hamil datang saat antrean masih panjang. Anda...
+L|Warga dari daerah terpencil datang dengan berkas yang keliru. Anda...
+L|Warga membandingkan layanan kantor Anda dengan kantor lain dengan nada kesal. Anda...
+L|Jam layanan hampir habis padahal masih ada warga menunggu. Anda...
+L|Warga mengkritik layanan Anda di media sosial. Anda...
+L|Warga menanyakan status permohonan yang lama belum selesai. Anda...
+L|Warga tidak lancar berbahasa Indonesia. Anda...
+L|Warga mengeluh biaya layanan terlalu mahal. Anda...
+K|Rekan sering terlambat sehingga pekerjaan tim terhambat. Anda...
+K|Dua rekan Anda berselisih dan suasana kantor tegang. Anda...
+K|Rekan tidak membagikan informasi yang Anda perlukan. Anda...
+K|Anda berbeda pendapat dengan rekan soal pembagian tugas. Anda...
+K|Rekan senior meremehkan ide Anda di rapat. Anda...
+K|Anggota tim menolak dilibatkan dalam proyek bersama. Anda...
+K|Rekan menyalahkan Anda atas kesalahan yang bukan Anda lakukan. Anda...
+K|Rekan tampak tertekan dan kinerjanya menurun. Anda...
+K|Rekan satu tim lebih sering mengobrol saat jam kerja. Anda...
+K|Atasan memberi tugas mendadak yang bertabrakan dengan tugas rekan. Anda...
+K|Anda dan rekan bersaing untuk mendapat penghargaan. Anda...
+K|Rekan baru kesulitan mengikuti ritme kerja unit. Anda...
+K|Rekan menyebarkan gosip tentang Anda. Anda...
+K|Hasil kerja kelompok kurang baik karena komunikasi buruk. Anda...
+K|Rekan menolak saran perbaikan dari Anda. Anda...
+A|Instansi menerapkan aplikasi baru yang belum Anda kuasai. Anda...
+A|Prosedur kerja berubah mendadak. Anda...
+A|Anda ditugaskan di bidang yang belum pernah dikerjakan. Anda...
+A|Atasan meminta Anda memakai alat kerja digital terbaru. Anda...
+A|Anda ditempatkan di unit dengan budaya kerja yang berbeda. Anda...
+A|Teknologi kantor diperbarui sehingga cara lama tidak berlaku. Anda...
+A|Anda diminta mengikuti pelatihan di luar jam kerja. Anda...
+A|Anda mendapat umpan balik bahwa kemampuan analisis data Anda kurang. Anda...
+A|Regulasi layanan diperbarui dan Anda belum memahaminya. Anda...
+A|Anda diminta menggantikan rekan yang pindah tugas. Anda...
+A|Anda harus belajar bahasa asing untuk tugas baru. Anda...
+A|Atasan memberi tugas yang menurut Anda terlalu sulit. Anda...
+T|Anda salah menginput data pada laporan. Anda...
+T|Anda lupa menyampaikan pesan penting atasan kepada rekan. Anda...
+T|Dokumen penting yang Anda bawa hilang. Anda...
+T|Anda terlambat menyelesaikan tugas karena salah memperkirakan waktu. Anda...
+T|Anda salah memberi informasi kepada warga. Anda...
+T|Laporan yang Anda kirim ternyata memuat angka keliru. Anda...
+T|Anda tidak sengaja merusak peralatan kantor. Anda...
+T|Anda salah mengirim surat ke alamat yang keliru. Anda...
+T|Anda lupa menghadiri rapat yang sudah dijadwalkan. Anda...
+T|Pekerjaan Anda menyebabkan kerugian kecil bagi kantor. Anda...
+T|Anda diminta menjelaskan kegagalan target unit kepada pimpinan. Anda...
+T|Anda melanggar prosedur karena terburu-buru. Anda...
+S|Rekan beragama lain sedang beribadah saat jam kerja. Anda...
+S|Beredar kabar bohong bernuansa SARA di grup kantor. Anda...
+S|Rekan dari suku lain dijadikan bahan lelucon. Anda...
+S|Ada ajakan bergabung dengan kelompok yang menolak Pancasila. Anda...
+S|Warga dari etnis minoritas datang ke kantor Anda. Anda...
+S|Kantor mengadakan acara budaya daerah yang tidak Anda kenal. Anda...
+S|Rekan menyebarkan ujaran kebencian di media sosial. Anda...
+S|Beredar video provokatif tentang kelompok tertentu. Anda...
+S|Ada perayaan hari besar agama lain di lingkungan kantor. Anda...
+S|Rekan mengajak berdebat soal pilihan politik di ruang kerja. Anda...
+S|Ada warga yang diperlakukan berbeda karena logat daerahnya. Anda...
+S|Anda ditempatkan di daerah dengan adat yang sangat berbeda. Anda...
+S|Ada ajakan demo yang berpotensi menimbulkan kericuhan. Anda...
+S|Rekan mengunggah kritik berlebihan terhadap pemerintah berdasarkan kabar yang belum tentu benar. Anda...`.split('\n').map(x=>[x[0],x.slice(2)]);
+function buildTKPG(){R=rng(6006);return TKG.map(([c,q])=>{const l=LAD[c],ix=shuf([0,1,2,3,4]),o=ix.map(i=>l[i]),sc=ix.map(i=>5-i);return{key:q,ctx:()=>`<p class="stmt">${q}</p>`,ask:'Pilih respons yang paling tepat. Tiap pilihan bernilai 1 sampai 5.',o,sc,ci:sc.indexOf(5),e:NOTE[c]+'<br>Poin: '+sc.map((p,i)=>L[i]+' = '+p).join(', ')}})}
 function buildTWK(){R=rng(4004);return TWK.concat(TWK2,TWK3).map(([q,a,...r])=>{const e=r.pop(),o=shuf([a,...r]);return{key:q,ctx:()=>`<p class="stmt">${q}</p>`,ask:'Pilih jawaban yang paling tepat.',o,ci:o.indexOf(a),e}})}
 function buildTKP(){R=rng(5005);return TKP.concat(TKP2,TKP3).map(([q,...r])=>{const e=r.pop(),ix=shuf([0,1,2,3,4]),o=ix.map(i=>r[i]),sc=ix.map(i=>5-i);return{key:q,ctx:()=>`<p class="stmt">${q}</p>`,ask:'Pilih respons yang paling tepat. Tiap pilihan bernilai 1 sampai 5.',o,sc,ci:sc.indexOf(5),e:e+'<br>Poin: '+sc.map((p,i)=>L[i]+' = '+p).join(', ')}})}
 function pool(){const m=sel.mode,sh=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a},tg=(a,t)=>a.map(q=>({...q,t})),pk=(a,n)=>{const sn=ST.get().sn||{},u=sh(a.filter(q=>!sn[q.m+'|'+q.key])),v=sh(a.filter(q=>sn[q.m+'|'+q.key]));return[...u,...v].slice(0,n)};
@@ -464,8 +771,8 @@ function pool(){const m=sel.mode,sh=a=>{a=a.slice();for(let i=a.length-1;i>0;i--
 /* ---------- bank ---------- */
 const MODES=[
 {id:6,name:'Tryout SKD lengkap',d:'TWK, TIU, lalu TKP berurutan, dengan skor tiap tes dan batas kelulusan.'},
-{id:4,name:'TWK · Wawasan Kebangsaan',d:'Pancasila, UUD 1945, NKRI, Bhinneka Tunggal Ika, sejarah, bela negara, ASN. Bank 99 soal, 30 dipilih per sesi.'},
-{id:5,name:'TKP · Karakteristik Pribadi',d:'Pelayanan publik, integritas, TIK, jejaring kerja, sosial budaya. Bank 69 soal, 45 dipilih per sesi, nilai 1 sampai 5.'},
+{id:4,name:'TWK · Wawasan Kebangsaan',d:'Pancasila, UUD 1945, NKRI, Bhinneka Tunggal Ika, sejarah, bela negara, ASN. Bank 444 soal, 30 dipilih per sesi.'},
+{id:5,name:'TKP · Karakteristik Pribadi',d:'Pelayanan publik, integritas, TIK, jejaring kerja, sosial budaya. Bank 156 soal, 45 dipilih per sesi, nilai 1 sampai 5.'},
 {id:7,name:'Ulangi soal salah dan ragu-ragu',d:'Kumpulan soal yang pernah kamu jawab salah atau tandai ragu-ragu.'},
 {id:8,name:'Kartu hafalan TWK',d:'Kartu balik untuk pasal, tanggal, dan sila yang perlu dihafal.'},
 {id:9,name:'Soal buatanmu',d:'Latihan dari soal yang kamu impor sendiri (bagian bawah menu).'},
@@ -474,7 +781,7 @@ const MODES=[
 {id:3,name:'TIU · Kecukupan data',d:'Tentukan apakah pernyataan (1) dan (2) cukup untuk menjawab pertanyaan.',gen:q3}];
 const BANK={};
 function bank(id){
-  if(BANK[id])return BANK[id];if(id===4||id===5||id===9)return BANK[id]=(id===4?buildTWK():id===5?buildTKP():buildCustom()).map(q=>({...q,m:id}));
+  if(BANK[id])return BANK[id];if(id===4||id===5||id===9)return BANK[id]=(id===4?buildTWK().concat(buildFacts()):id===5?buildTKP().concat(buildTKPG()):buildCustom()).filter((q,i,r)=>r.findIndex(x=>x.key===q.key)===i).map(q=>({...q,m:id}));
   R=rng(id*1000+7);const m=MODES.find(x=>x.id===id),out=[],seen=new Set();let g=0;
   while(out.length<300&&g++<30000){const q=m.gen(out.length);if(seen.has(q.key))continue;seen.add(q.key);out.push(q)}
   return BANK[id]=out.map(q=>({...q,m:id}));
